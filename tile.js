@@ -1,4 +1,5 @@
-
+const odds = () => max(floor(random(1, 3)-0.8), 1);
+let won = false;
 
 class Board {
   constructor(w, h) {
@@ -14,7 +15,7 @@ class Board {
     for(let i = 0; i < 2; i ++) {
       const x = floor(random(w));
       const y = floor(random(h));
-      this.tiles[x][y] = new Tile(x, y,  max(floor(random(1, 3)-0.8), 1) );
+      this.tiles[x][y] = new Tile(x, y,  odds() );
     }
 
     this.rows = transpose(this.tiles);
@@ -33,6 +34,8 @@ class Board {
     forEach2D(this.tiles, (n, i, j) => {
       if(n instanceof Tile) n.display(this);
     });
+
+    if(won) return;
       
     if(keyDown[38]) this.moveUp();
     if(keyDown[40]) this.moveDown();
@@ -64,7 +67,7 @@ class Board {
       x = floor(random(this.width));
       y = floor(random(this.height));
     }
-    this.tiles[x][y] = new Tile(x, y, max(floor(random(1, 3)-0.8), 1) );
+    this.tiles[x][y] = new Tile(x, y, odds() );
   }
 
   moveDown() {
@@ -155,22 +158,28 @@ class Tile {
   }
 
   display(parent) {
+    if(keyDown[192]) {
+      this.val ++;
+      this.displayVal ++;
+    }
+    
     const s = 0.3;
     rectMode(CENTER);
     // parents.tiles[this.i][this.j] = this;
     const k = 0.05, damp = 0.1;
-    this.ds.x -= (this.scale.x-1)*k + this.ds.x*damp;
-    this.ds.y -= (this.scale.y-1)*k + this.ds.y*damp;
+    const t = this.displayVal == 11 ? 2 : 1;
+    this.ds.x -= (this.scale.x-t)*k + this.ds.x*damp;
+    this.ds.y -= (this.scale.y-t)*k + this.ds.y*damp;
     this.ds.limit(0.15);
     this.scale.add(this.ds);
-    this.scale.x = constrain(this.scale.x, 0, 1.2);
-    this.scale.y = constrain(this.scale.y, 0, 1.2);
+    this.scale.x = constrain(this.scale.x, 0, t+0.2);
+    this.scale.y = constrain(this.scale.y, 0, t+0.2);
     
     this.parent = parent;
     textAlign(CENTER, CENTER);
     textSize(70-this.val);
     
-    if(this.contact && (this.pi != this.i || this.pj != this.j)) {
+    if(this.displayVal < 11 && this.contact && (this.pi != this.i || this.pj != this.j)) {
       const dx = this.i-this.pi;
       const dy = this.j-this.pj;
 
@@ -192,6 +201,15 @@ class Tile {
       this.drawIcon();
       pop();
     }
+
+    if(this.displayVal == 11) {
+      won = true;
+      this.i = 1.5;
+      this.j = 1.5;
+    }
+
+    if(won && this.displayVal != 11 && (this.i > 0 && this.i < 3 && this.j > 0 && this.j < 3)) return;
+    
     this.pi = lerp(this.pi, this.i, s);
     this.pj = lerp(this.pj, this.j, s);
     
