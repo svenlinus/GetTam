@@ -32,8 +32,8 @@ function preload() {
     loadImage("images/novato.png"),
     loadImage("images/archie.jpeg"),
     loadImage("images/mc.png"),
-    // loadImage("tamiscal.png"),
-    // loadImage("tamiscal.png"),
+    loadImage("images/sr.jpg"),
+    loadImage("images/branson.png"),
     loadImage("images/tam.png"),
   ];
 }
