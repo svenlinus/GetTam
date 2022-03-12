@@ -1,5 +1,4 @@
 const odds = () => max(floor(random(1, 3)-0.8), 1);
-let won = false;
 
 class Board {
   constructor(w, h) {
@@ -158,7 +157,7 @@ class Tile {
   }
 
   display(parent) {
-    if(keyDown[192]) {
+    if(keyDown[192] && !won) {
       this.val ++;
       this.displayVal ++;
     }
@@ -167,7 +166,11 @@ class Tile {
     rectMode(CENTER);
     // parents.tiles[this.i][this.j] = this;
     const k = 0.05, damp = 0.1;
-    const t = this.displayVal == 11 ? 2 : 1;
+    let t = 1;
+    if(this.displayVal == 11) t = 2;
+    else if(this.displayVal >= 9) t = 1.15;
+    else if(this.displayVal >= 7) t = 1.05;
+    
     this.ds.x -= (this.scale.x-t)*k + this.ds.x*damp;
     this.ds.y -= (this.scale.y-t)*k + this.ds.y*damp;
     this.ds.limit(0.15);
@@ -208,12 +211,13 @@ class Tile {
       this.j = 1.5;
     }
 
-    if(won && this.displayVal != 11 && (this.i > 0 && this.i < 3 && this.j > 0 && this.j < 3)) return;
     
     this.pi = lerp(this.pi, this.i, s);
     this.pj = lerp(this.pj, this.j, s);
     
     this.pos.set(this.pi*150, this.pj*150);
+    
+    if(won && this.displayVal != 11 && (this.i > 0 && this.i < 3 && this.j > 0 && this.j < 3)) return;
     
     push();
     translate(this.pos);

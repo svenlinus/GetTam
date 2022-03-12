@@ -22,6 +22,8 @@ let size, cnv;
 let board;
 let icons = [];
 
+let won = false;
+
 function preload() {
   icons = [
     loadImage("images/tamiscal.png"),
@@ -41,6 +43,7 @@ function preload() {
 
 function setup() {
   // size = min(windowWidth, windowHeight);
+  won = false;
   cnv = createCanvas(600, 600);
   let pt = (windowHeight-height)/2;
   let pl = (windowWidth-width)/2;
@@ -54,6 +57,9 @@ function setup() {
 function draw() {
   background(225);
   board.display();
+
+  if(keyUp[32]) setup();
+  
   keyDown = [];
   keyUp = [];
 }
