@@ -1,16 +1,52 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
   <head>
     <link rel="icon" type="image/png" href="images/tam.png">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/addons/p5.sound.min.js"></script>
     <link rel="stylesheet" type="text/css" href="style.css">
+	  <title>
+		Get Tam
+		</title>
     <meta charset="utf-8" />
 
   </head>
   <body>
-    
+	  <div class='padder'>
+	  <div id='content' class="grid-container container">
+	  <div class='text-zone grid-item'>
+		  	<div class='page-title'>
+			  	<header> <b>GetTam</b> </header>
+	  		</div>
+		<p>
+      <br>
+			Combine Marin Schools to get Tam. Press space to restart.
+      <br>
+		</p>
+	  </div>
+    <script src="gesture.js"></script>
     <script src="script.js"></script>
     <script src="tile.js"></script>
+	  <div id="board" class='grid-item'></div>
+    	
+	  <div class='text-zone grid-item'>
+      <br>
+		  <p>
+				<b>HOW TO PLAY: </b> Use your <b>arrow keys</b> or <b>swipe</b> with your finger to move the tiles. When two tiles with of same shcool overlap, they <b>combine!</b>
+		  <br>
+      <br>
+			  <b>NOTE:</b> The order of schools is not intended to be a ranking. It is based on when the school was founded/built, with Tam being the oldest.
+		  </p>
+		  <div class='boarders'>
+		<!-- put any subsequent sections in a div.boarders-->
+				<p>
+					Created by Linus Tornqvist, Foster Angus, Adnan Ashraf, Mohamad Mamoon. Inspired by GetMit. Music by Ida Tornqvist. <a href="https://tamcsclub.github.io/" target="_blank">Tam CS Club</a>
+				</p>
+        <br>
+        <br>
+		  </div>
+	  </div>
+  </div>
+	</div>
   </body>
 </html>

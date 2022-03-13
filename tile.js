@@ -36,12 +36,12 @@ class Board {
 
     if(won) return;
       
-    if(keyDown[38]) this.moveUp();
-    if(keyDown[40]) this.moveDown();
-    if(keyDown[37]) this.moveLeft();
-    if(keyDown[39]) this.moveRight();
+    if(movement.y < 0) this.moveUp();
+    if(movement.y > 0) this.moveDown();
+    if(movement.x < 0) this.moveLeft();
+    if(movement.x > 0) this.moveRight();
 
-    if(keyDown[38] || keyDown[40] || keyDown[37] || keyDown[39]) {
+    if(abs(movement.x) + abs(movement.y) > 0) {
       if(!this.isFull() && this.moved) this.addTile();
     }
   }
@@ -168,8 +168,8 @@ class Tile {
     const k = 0.05, damp = 0.1;
     let t = 1;
     if(this.displayVal == 11) t = 2;
-    else if(this.displayVal >= 9) t = 1.15;
-    else if(this.displayVal >= 7) t = 1.05;
+    else if(this.displayVal >= 9) t = 1.13;
+    else if(this.displayVal >= 7) t = 1.08;
     
     this.ds.x -= (this.scale.x-t)*k + this.ds.x*damp;
     this.ds.y -= (this.scale.y-t)*k + this.ds.y*damp;
@@ -206,6 +206,7 @@ class Tile {
     }
 
     if(this.displayVal == 11) {
+      if(!won) hawkSound.play();
       won = true;
       this.i = 1.5;
       this.j = 1.5;

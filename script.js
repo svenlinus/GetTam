@@ -1,4 +1,4 @@
-// 2048 Tamalpais  1908 *
+ // 2048 Tamalpais  1908 *
 // 1024 Branson  1917
 // 512 San Rafael  1924
 // 256 Marin Catholic  1949 *
@@ -15,6 +15,7 @@
 const keys = [];
 let keyDown = [];
 let keyUp = [];
+let movement;
 
 let numbers = false;
 
@@ -38,30 +39,41 @@ function preload() {
     loadImage("images/branson.png"),
     loadImage("images/tam.png"),
   ];
+
+  hawkSound = loadSound("sounds/hawk.mp3");
 }
 
 
 function setup() {
-  // size = min(windowWidth, windowHeight);
   won = false;
-  cnv = createCanvas(600, 600);
-  let pt = (windowHeight-height)/2;
-  let pl = (windowWidth-width)/2;
-  cnv.position(pl, pt);
+  cnv = createCanvas(616, 616);
+	// Tie canvas to a div
+	board = cnv.parent("board");
 
+  addSwipe();
+  
   board = new Board(4, 4);
+  movement = createVector(0, 0);
   
   background(255);
 }
 
 function draw() {
+  translate(8, 8);
   background(225);
+  
+  if(keyDown[38]) movement.y = -1;
+  if(keyDown[40]) movement.y = 1;
+  if(keyDown[37]) movement.x = -1;
+  if(keyDown[39]) movement.x = 1;
+  
   board.display();
 
   if(keyUp[32]) setup();
   
   keyDown = [];
   keyUp = [];
+  movement.set(0, 0)
 }
 
 
@@ -77,8 +89,10 @@ function keyReleased() {
 
 
 
-function windowResized() {
-  let pt = (windowHeight-height)/2;
-  let pl = (windowWidth-width)/2
-  cnv.position(pl, pt);
-}
+// function windowResized() {
+//   let pt = (windowHeight-height)/2;
+//   let pl = (windowWidth-width)/2
+//   cnv.position(pl, pt);
+// }
+
+
