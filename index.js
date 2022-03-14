@@ -1,5 +1,4 @@
 
-function setup() {
   const firebaseConfig = {
   apiKey: "AIzaSyBQp9ljmUgP1ZuxcaGaY3KJHb8h9GGRlS8",
   authDomain: "get-tam.firebaseapp.com",
@@ -11,5 +10,5 @@ function setup() {
 };
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
-}
+// const app = initializeApp(firebaseConfig);
+// console.log(app);

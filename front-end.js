@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function () {
 })
 
 // Link of website
-let link = 'wwwwww';
+let link = 'https://lankmann.github.io/GetTam/';
 // Copies link to clipboard.
 function copy_link() {
 	navigator.clipboard.writeText(link);
