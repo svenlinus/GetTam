@@ -275,7 +275,7 @@ class Tile {
     for(let k = j+1; k < tiles[i].length; k ++) {
       if(tiles[i][k] instanceof Tile) {
         tiles[i][j] = 0;
-        if(tiles[i][k].displayVal == this.displayVal) {
+        if(tiles[i][k].val == this.val) {
           this.j = k;
           this.val ++;
           score += pow(2, this.val);
@@ -304,7 +304,7 @@ class Tile {
     for(let k = j-1; k >= 0; k --) {
       if(tiles[i][k] instanceof Tile) {
         tiles[i][j] = 0;
-        if(tiles[i][k].displayVal == this.displayVal) {
+        if(tiles[i][k].val == this.val) {
           this.j = k;
           this.val ++;
           score += pow(2, this.val);
@@ -333,7 +333,7 @@ class Tile {
     for(let k = i-1; k >= 0; k --) {
       if(tiles[k][j] instanceof Tile) {
         tiles[i][j] = 0;
-        if(tiles[k][j].displayVal == this.displayVal) {
+        if(tiles[k][j].val == this.val) {
           this.i = k;
           this.val ++;
           score += pow(2, this.val);
@@ -362,7 +362,7 @@ class Tile {
     for(let k = i+1; k < tiles.length; k ++) {
       if(tiles[k][j] instanceof Tile) {
         tiles[i][j] = 0;
-        if(tiles[k][j].displayVal == this.displayVal) {
+        if(tiles[k][j].val == this.val) {
           this.i = k;
           this.val ++;
           score += pow(2, this.val);
