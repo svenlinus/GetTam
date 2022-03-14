@@ -1,4 +1,8 @@
 const odds = () => max(floor(random(1, 3)-0.8), 1);
+let size;
+let score = 0;
+let bestSchool = 1;
+
 
 class Board {
   constructor(w, h) {
@@ -21,13 +25,14 @@ class Board {
   }
 
   display() {
+    size = 600/this.width;
     this.moved = false;
     this.rows = transpose(this.tiles);
     fill(180);
     noStroke();
     for(let i = 0; i < this.width; i ++) {
       for(let j = 0; j < this.height; j ++)
-        rect(i*150+8, j*150+8, 134, 134);
+        rect(i*size+8, j*size+8, size-16, size-16);
     }
 
     forEach2D(this.tiles, (n, i, j) => {
@@ -42,6 +47,7 @@ class Board {
     if(movement.x > 0) this.moveRight();
 
     if(abs(movement.x) + abs(movement.y) > 0) {
+      update_score(score);
       if(!this.isFull() && this.moved) this.addTile();
     }
   }
@@ -161,7 +167,13 @@ class Tile {
       this.val ++;
       this.displayVal ++;
     }
-    
+
+    if(this.displayVal > bestSchool) {
+      bestSchool = this.displayVal;
+      update_school(bestSchool-1);
+    }
+
+      
     const s = 0.3;
     rectMode(CENTER);
     // parents.tiles[this.i][this.j] = this;
@@ -196,10 +208,10 @@ class Tile {
       }
       
       push();
-      translate(this.i*150, this.j*150);
-      const offx = dx != 0 ? 75*(1-this.scale.x)*dx/abs(dx) : 0
-      const offy = dy != 0 ? 75*(1-this.scale.y)*dy/abs(dy) : 0;
-      translate(75+offx || 0, 75+offy);
+      translate(this.i*size, this.j*size);
+      const offx = dx != 0 ? (size/2)*(1-this.scale.x)*dx/abs(dx) : 0
+      const offy = dy != 0 ? (size/2)*(1-this.scale.y)*dy/abs(dy) : 0;
+      translate(size/2+offx || 0, size/2+offy);
       scale(this.scale.x, this.scale.y);
       this.drawIcon();
       pop();
@@ -216,13 +228,13 @@ class Tile {
     this.pi = lerp(this.pi, this.i, s);
     this.pj = lerp(this.pj, this.j, s);
     
-    this.pos.set(this.pi*150, this.pj*150);
+    this.pos.set(this.pi*size, this.pj*size);
     
     if(won && this.displayVal != 11 && (this.i > 0 && this.i < 3 && this.j > 0 && this.j < 3)) return;
     
     push();
     translate(this.pos);
-    translate(75, 75);
+    translate(size/2, size/2);
     scale(this.scale.x, this.scale.y);
     this.drawIcon();
     pop();
@@ -235,7 +247,7 @@ class Tile {
     imageMode(CENTER);
     
     if(!numbers) {
-      image(icons[this.displayVal-1], 0, 0, 134, 134);
+      image(icons[this.displayVal-1], 0, 0, size-16, size-16);
       return;
     }
     colorMode(HSB);
@@ -266,6 +278,7 @@ class Tile {
         if(tiles[i][k].val == this.val) {
           this.j = k;
           this.val ++;
+          score += pow(2, this.val);
           tiles[i][k] = this;
           this.contact = true;
           tiles[i][k-1] = 0;
@@ -294,6 +307,7 @@ class Tile {
         if(tiles[i][k].val == this.val) {
           this.j = k;
           this.val ++;
+          score += pow(2, this.val);
           tiles[i][k] = this;
           this.contact = true;
           tiles[i][k+1] = 0;
@@ -322,6 +336,7 @@ class Tile {
         if(tiles[k][j].val == this.val) {
           this.i = k;
           this.val ++;
+          score += pow(2, this.val);
           tiles[k][j] = this;
           this.contact = true;
           tiles[k+1][j] = 0;
@@ -350,6 +365,7 @@ class Tile {
         if(tiles[k][j].val == this.val) {
           this.i = k;
           this.val ++;
+          score += pow(2, this.val);
           tiles[k][j] = this;
           this.contact = true;
           tiles[k-1][j] = 0;

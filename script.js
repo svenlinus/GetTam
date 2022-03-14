@@ -1,14 +1,15 @@
- // 2048 Tamalpais  1908 *
+// 2048 Tamalpais  1908
 // 1024 Branson  1917
 // 512 San Rafael  1924
-// 256 Marin Catholic  1949 *
-// 128 Archie Williams   1951 *
-// 64 Novato  1957 *
-// 32 Redwood  1958 *
-// 16 Terra Linda  1960 *
-// 8 San Marin  1967 *
-// 4 Marin Academy  1971 *
-// 2 TamisCal  1990 *
+// 256 Marin Catholic  1949
+// 128 Archie Williams   1951
+// 64 Novato  1957
+// 32 Redwood  1958
+// 16 Terra Linda  1960
+// 8 San Marin  1967
+// 4 Marin Academy  1971
+// 2 TamisCal  1990
+
 
 
 
@@ -19,7 +20,7 @@ let movement;
 
 let numbers = false;
 
-let size, cnv;
+let cnv;
 let board;
 let icons = [];
 
@@ -50,6 +51,9 @@ function setup() {
 	// Tie canvas to a div
 	board = cnv.parent("board");
 
+  update_score(0);
+  update_school(0);
+  
   addSwipe();
   
   board = new Board(4, 4);
@@ -62,10 +66,10 @@ function draw() {
   translate(8, 8);
   background(225);
   
-  if(keyDown[38]) movement.y = -1;
-  if(keyDown[40]) movement.y = 1;
-  if(keyDown[37]) movement.x = -1;
-  if(keyDown[39]) movement.x = 1;
+  if(keyDown[38] || keyDown[87]) movement.y = -1;
+  if(keyDown[40] || keyDown[83]) movement.y = 1;
+  if(keyDown[37] || keyDown[65]) movement.x = -1;
+  if(keyDown[39] || keyDown[68]) movement.x = 1;
   
   board.display();
 

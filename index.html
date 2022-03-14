@@ -2,9 +2,14 @@
 <html lang="en">
   <head>
     <link rel="icon" type="image/png" href="images/tam.png">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/9.6.8/firebase-app.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/addons/p5.sound.min.js"></script>
     <link rel="stylesheet" type="text/css" href="style.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="front-end.js"></script>
+	<script src="notify.js"></script>
+  <script src="index.js"></script>
 	  <title>
 		Get Tam
 		</title>
@@ -16,7 +21,42 @@
 	  <div id='content' class="grid-container container">
 	  <div class='text-zone grid-item'>
 		  	<div class='page-title'>
-			  	<header> <b>GetTam</b> </header>
+				<div id='left-title'>
+			  		<header id='page-header'> <b>GetTam</b> </header>
+					<div>
+						<br>
+						<button id='copy-link' class='btn'>Copy Link</button>
+					</div>
+				</div>
+
+          <!-- Scores look great 
+          Maybe try something like:
+          
+          Best
+          1000     San Rafael
+          Current
+          250      Archie Williams
+          
+          -->
+          
+				<scores>
+					<score id='max-score'>
+						<div class='score-title'>Best Score</div>
+						<div class='score-entry' id='max-score-holder'></div>
+					</score>
+					<score id='max-school'>
+						<div class='score-title'>Best School</div>
+						<div class='score-entry' id='max-school-holder'>loading</div>
+					</score>	
+					<score id='score'>
+						<div class='score-title'>Score</div>
+						<div class='score-entry' id='score-holder'>0</div>
+					</score>
+					<score id='school'>
+						<div class='score-title'>School</div>
+						<div class='score-entry' id='school-holder'>TamisCal</div>
+					</score>
+				</scores>
 	  		</div>
 		<p>
       <br>
@@ -32,13 +72,13 @@
 	  <div class='text-zone grid-item'>
       <br>
 		  <p>
-				<b>HOW TO PLAY: </b> Use your <b>arrow keys</b> or <b>swipe</b> with your finger to move the tiles. When two tiles of same shcool overlap, they <b>combine!</b>
+				<b>HOW TO PLAY: </b> Use your <b>arrow keys</b> or <b>swipe</b> with your finger to move the tiles. When two tiles of the same shcool overlap, they <b>combine!</b>
 		  <br>
       <br>
 			  <b>NOTE:</b> The order of schools is not intended to be a ranking. It is based on when the school was founded/built, with Tam being the oldest.
 		  </p>
-		  <div class='boarders'>
-		<!-- put any subsequent sections in a div.boarders-->
+		  <div class='borders'>
+		<!-- put any subsequent sections in a div.borders-->
 				<p>
 					Created by Linus Tornqvist, Foster Angus, Adnan Ashraf, Mohamad Mamoon. Inspired by GetMit. Music by Ida Tornqvist. <a href="https://tamcsclub.github.io/" target="_blank">Tam CS Club</a>
 				</p>
