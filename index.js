@@ -1,3 +1,8 @@
+// import { initializeApp } from "firebase/app";
+// import { getAnalytics } from "firebase/analytics";
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-app.js";
+  import { getFirestore, doc, getDoc, getDocs, collection } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-firestore.js";
 
   const firebaseConfig = {
   apiKey: "AIzaSyBQp9ljmUgP1ZuxcaGaY3KJHb8h9GGRlS8",
@@ -10,5 +15,6 @@
 };
 
 // Initialize Firebase
-// const app = initializeApp(firebaseConfig);
-// console.log(app);
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+console.log(analytics);

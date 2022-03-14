@@ -4,11 +4,11 @@ document.addEventListener('DOMContentLoaded', function () {
 })
 
 // Link of website
-let link = 'https://lankmann.github.io/GetTam/';
+let link = window.location.href;
 // Copies link to clipboard.
 function copy_link() {
 	navigator.clipboard.writeText(link);
-	$.notify("Successfully Copied", "success");
+	$.notify("Copied to your clipboard", "success");
 }
 
 // Resizes things depending on phone/computer
@@ -24,8 +24,10 @@ function update_fonts() {
     //Sets the font-size of the page if on mobile
   	let r = document.querySelector(':root');
   
-  	r.style.setProperty('--smallFontSize', '16pt');
-  	r.style.setProperty('--scoreFontSize', '18pt');
+  	r.style.setProperty('--smallFontSize', '24pt');
+  	r.style.setProperty('--scoreFontSize', '24pt');
+	r.style.setProperty('--pFontSize', '20pt');
+	// r.style.setProperty('--width', '700px');
   } else {
     //Sets the font-size of the page if not on mobile
     

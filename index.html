@@ -6,10 +6,10 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/addons/p5.sound.min.js"></script>
     <link rel="stylesheet" type="text/css" href="style.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	<script src="front-end.js"></script>
-	<script src="notify.js"></script>
-  <script src="index.js"></script>
+	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	  <script src="front-end.js"></script>
+	  <script src="notify.js"></script>
+    <!-- <script type="module" src="index.js"></script> -->
 	  <title>
 		Get Tam
 		</title>
@@ -19,13 +19,13 @@
   <body>
 	  <div class='padder'>
 	  <div id='content' class="grid-container container">
-	  <div class='text-zone grid-item'>
-		  	<div class='page-title'>
-				<div id='left-title'>
-			  		<header id='page-header'> <b>GetTam</b> </header>
+	  <div class="text-zone grid-item">
+		  	<div class="page-title">
+				<div id="left-title">
+			  		<header id="page-header"> <b>GetTam</b> </header>
 					<div>
 						<br>
-						<button id='copy-link' class='btn'>Copy Link</button>
+						<button id="copy-link" class="btn">Copy Link</button>
 					</div>
 				</div>
 
@@ -40,21 +40,21 @@
           -->
           
 				<scores>
-					<score id='max-score'>
-						<div class='score-title'>Best Score</div>
-						<div class='score-entry' id='max-score-holder'></div>
+					<score id="max-score">
+						<div class="score-title">Best Score</div>
+						<div class="score-entry" id="max-score-holder">0</div>
 					</score>
-					<score id='max-school'>
-						<div class='score-title'>Best School</div>
-						<div class='score-entry' id='max-school-holder'>loading</div>
+					<score id="max-school">
+						<div class="score-title">Best School</div>
+						<div class="score-entry" id="max-school-holder">TamisCal</div>
 					</score>	
-					<score id='score'>
-						<div class='score-title'>Score</div>
-						<div class='score-entry' id='score-holder'>0</div>
+					<score id="score">
+						<div class="score-title">Score</div>
+						<div class="score-entry" id="score-holder">0</div>
 					</score>
-					<score id='school'>
-						<div class='score-title'>School</div>
-						<div class='score-entry' id='school-holder'>TamisCal</div>
+					<score id="school">
+						<div class="score-title">School</div>
+						<div class="score-entry" id="school-holder">TamisCal</div>
 					</score>
 				</scores>
 	  		</div>
@@ -68,7 +68,8 @@
     <script src="script.js"></script>
     <script src="tile.js"></script>
 	  <div id="board" class='grid-item'></div>
-    	
+    
+      
 	  <div class='text-zone grid-item'>
       <br>
 		  <p>

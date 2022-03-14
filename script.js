@@ -51,6 +51,9 @@ function setup() {
 	// Tie canvas to a div
 	board = cnv.parent("board");
 
+  score = 0;
+  bestSchool = 0;
+
   update_score(0);
   update_school(0);
   
@@ -88,6 +91,15 @@ function keyPressed() {
 function keyReleased() {
   keys[keyCode] = false;
   keyUp[keyCode] = true;
+
+  if(keyCode == 27) clearCookies();
+}
+
+
+function clearCookies() {
+  setCookie("maxScore", 0, 0);
+  setCookie("maxSchool", 0, 0);
+  setup();
 }
 
 

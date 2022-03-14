@@ -2,6 +2,7 @@
 	--smallFontSize: 10pt;
 	--scoreFontSize: 12pt;
 	--fontSize: 12pt;
+	--pFontSize: 18px;
 }
 
 
@@ -46,7 +47,7 @@ header#page-header {
 p {
 	line-height: 1.6;
 	font-family: 'Montserrat', sans-serif;
-  font-size: 18px;
+  font-size: var(--pFontSize);
 }
 
 #board {
