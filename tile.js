@@ -203,10 +203,10 @@ class Tile {
   }
 
   display(parent) {
-    if(keys[16] && keyDown[187] && !won) {
-      this.val ++;
-      this.displayVal ++;
-    }
+    // if(keys[16] && keyDown[187] && !won) {
+    //   this.val ++;
+    //   this.displayVal ++;
+    // }
 
     if(this.displayVal > bestSchool) {
       bestSchool = this.displayVal;
@@ -322,6 +322,13 @@ class Tile {
     score += pow(2, this.val);
     this.contact = true;
     this.combine = false;
+
+    if(this.val >= 6) {
+      if(round(dcam.magSq()) == 0) dcam.add(p5.Vector.random2D());
+      dcam.mult(this.val-5);
+      dcam.mult(0.6);
+      print(dcam.mag());
+    }
   }
 
   moveDown() {
