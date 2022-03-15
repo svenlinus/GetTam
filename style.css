@@ -128,6 +128,7 @@ scores {
 	display: inline-grid;
 	float: right;
 	text-align: right;
+  width: 240px;
 }
 
 score {
@@ -135,7 +136,7 @@ score {
 	display: inline-block;
 	position: relative;
 	padding: 7px 10px;
-	border-radius: 5px;
+	/* border-radius: 5px; */
 	color: #fff;
 	background: #1c68ba;
 	line-height: 1.3;
