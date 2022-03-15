@@ -40,6 +40,11 @@ class Board {
     });
 
     if(won) return;
+    this.isFull();
+    if(this.gameOver()) {
+      print("Game Over!");
+      return;
+    }
       
     if(movement.y < 0) this.moveUp();
     if(movement.y > 0) this.moveDown();
@@ -48,7 +53,7 @@ class Board {
 
     if(abs(movement.x) + abs(movement.y) > 0) {
       update_score(score);
-      if(!this.isFull() && this.moved) this.addTile();
+      if(!this.full && this.moved) this.addTile();
     }
   }
 
@@ -62,7 +67,39 @@ class Board {
         }
       }
     }
+    this.full = full;
     return full;
+  }
+
+  gameOver() {
+    if(!this.full) return false;
+    if(won) return false;
+    let over = true;
+    let iter = 0;
+
+    for(let i = 0; i < this.width; i ++) {
+      for(let j = 0; j < this.height; j ++) {
+        const t = this.tiles[i][j];
+        const t2 = this.tiles[this.width-i-1][this.height-j-1];
+        for(let n of t.neighbors) {
+          if(n.val == t.val) {
+            over = false;
+            break;
+          }
+        }
+        for(let n of t2.neighbors) {
+          if(n.val == t2.val) {
+            over = false;
+            break;
+          }
+        }
+        iter ++;
+        if(!over) break;
+      }
+      if(!over) break;
+    }
+
+    return over;
   }
 
   addTile() {
@@ -160,6 +197,9 @@ class Tile {
     
     this.scale = createVector(-0.5, -0.5);
     this.ds = createVector(0, 0);
+
+    this.combine = true;
+    this.neighbors = [];
   }
 
   display(parent) {
@@ -173,6 +213,14 @@ class Tile {
       update_school(bestSchool-1);
     }
 
+    // NESW
+    this.neighbors = [];
+    if(!won) {
+      if(this.j > 0) this.neighbors.push(parent.tiles[this.i][this.j-1]);
+      if(this.i < parent.width-1) this.neighbors.push(parent.tiles[this.i+1][this.j]);
+      if(this.j < parent.width-1) this.neighbors.push(parent.tiles[this.i][this.j+1]);
+      if(this.i > 0) this.neighbors.push(parent.tiles[this.i-1][this.j]);
+    }
       
     const s = 0.3;
     rectMode(CENTER);
@@ -266,6 +314,14 @@ class Tile {
     this.pj = this.j;
     this.contact = false;
     this.displayVal = this.val;
+    this.combine = true;
+  }
+
+  updateVal() {
+    this.val ++;
+    score += pow(2, this.val);
+    this.contact = true;
+    this.combine = false;
   }
 
   moveDown() {
@@ -275,12 +331,10 @@ class Tile {
     for(let k = j+1; k < tiles[i].length; k ++) {
       if(tiles[i][k] instanceof Tile) {
         tiles[i][j] = 0;
-        if(tiles[i][k].val == this.val) {
+        if(tiles[i][k].val == this.val && tiles[i][k].combine) {
+          this.updateVal();
           this.j = k;
-          this.val ++;
-          score += pow(2, this.val);
           tiles[i][k] = this;
-          this.contact = true;
           tiles[i][k-1] = 0;
         } else {
           this.j = k-1;
@@ -304,12 +358,10 @@ class Tile {
     for(let k = j-1; k >= 0; k --) {
       if(tiles[i][k] instanceof Tile) {
         tiles[i][j] = 0;
-        if(tiles[i][k].val == this.val) {
+        if(tiles[i][k].val == this.val && tiles[i][k].combine) {
+          this.updateVal();
           this.j = k;
-          this.val ++;
-          score += pow(2, this.val);
           tiles[i][k] = this;
-          this.contact = true;
           tiles[i][k+1] = 0;
         } else {
           this.j = k+1;
@@ -333,12 +385,10 @@ class Tile {
     for(let k = i-1; k >= 0; k --) {
       if(tiles[k][j] instanceof Tile) {
         tiles[i][j] = 0;
-        if(tiles[k][j].val == this.val) {
+        if(tiles[k][j].val == this.val && tiles[k][j].combine) {
+          this.updateVal();
           this.i = k;
-          this.val ++;
-          score += pow(2, this.val);
           tiles[k][j] = this;
-          this.contact = true;
           tiles[k+1][j] = 0;
         } else {
           this.i = k+1;
@@ -362,12 +412,10 @@ class Tile {
     for(let k = i+1; k < tiles.length; k ++) {
       if(tiles[k][j] instanceof Tile) {
         tiles[i][j] = 0;
-        if(tiles[k][j].val == this.val) {
+        if(tiles[k][j].val == this.val && tiles[k][j].combine) {
+          this.updateVal();
           this.i = k;
-          this.val ++;
-          score += pow(2, this.val);
           tiles[k][j] = this;
-          this.contact = true;
           tiles[k-1][j] = 0;
         } else {
           this.i = k-1;

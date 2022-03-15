@@ -84,7 +84,7 @@ div.padder {
 	
 }
 
-scores {
+/* scores {
 	padding-top: 1%;
 	grid-template-columns: auto auto;
 	grid-template-rows: auto auto;
@@ -116,7 +116,45 @@ div.score-title {
 div.score-entry {
 	font-size: var(--scoreFontSize);
 	font-weight: bold;
+} */
+
+
+scores {
+	padding-top: 1%;
+	grid-template-columns: auto auto;
+	grid-template-rows: auto auto;
+	column-gap: 7px;
+	row-gap: 7px;
+	display: inline-grid;
+	float: right;
+	text-align: right;
 }
+
+score {
+	text-align: center;
+	display: inline-block;
+	position: relative;
+	padding: 7px 10px;
+	border-radius: 5px;
+	color: #fff;
+	background: #1c68ba;
+	line-height: 1.3;
+}
+
+div.score-title {
+	color: #cbb9b9;
+	font-size: var(--smallFontSize);
+	font-weight: bold;
+	padding-bottom: 2px;
+	text-align: left;
+}
+
+div.score-entry {
+	font-size: var(--scoreFontSize);
+	font-weight: bold;
+}
+
+/* Above is new score css */
 
 #left-title {
 	display: inline-block;
