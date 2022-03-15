@@ -26,8 +26,8 @@ function update_fonts() {
   
   	r.style.setProperty('--smallFontSize', '24pt');
   	r.style.setProperty('--scoreFontSize', '24pt');
-	r.style.setProperty('--pFontSize', '20pt');
-	document.getElementById('first-intro-p').innerHTML = '<button class="btn" onClick="setup()">Restart</button>';
+  	r.style.setProperty('--pFontSize', '20pt');
+  	document.getElementById('first-intro-p').innerHTML = '<button class="btn" onClick="setup()">Restart</button>';
 	// r.style.setProperty('--width', '700px');
   } else {
     //Sets the font-size of the page if not on mobile

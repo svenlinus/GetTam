@@ -144,14 +144,14 @@ score {
 
 div.score-title {
 	color: #cbb9b9;
-	font-size: var(--smallFontSize);
+	font-size: 10pt;/* var(--smallFontSize); */
 	font-weight: bold;
 	padding-bottom: 2px;
 	text-align: left;
 }
 
 div.score-entry {
-	font-size: var(--scoreFontSize);
+	font-size: 12pt;/* var(--scoreFontSize); */
 	font-weight: bold;
 }
 
