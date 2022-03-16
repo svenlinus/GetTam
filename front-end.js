@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
-	document.getElementById('copy-link').addEventListener('click', copy_link);
+	// document.getElementById('copy-link').addEventListener('click', copy_link);
 	update_fonts();
 })
 

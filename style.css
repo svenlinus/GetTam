@@ -5,29 +5,19 @@
 	--pFontSize: 18px;
 }
 
+/* Foster. I have gotten rid of the restart and copy link buttons.
+Restart button is now integrated into the game
 
+Problem is, the format is off now. Could you fix it?
+*/
 
 html, body {
 	margin: 0px;
 	 justify-content: center;
   background-color: #ffffff
 }
-canvas {
-  /* display: block; */
-}
 
 
-
-#content {
-	
-}
-
-.text-zone {
-}
-
-.page-title {
-	
-}
 
 a {
   color: #1f4ba3;
@@ -118,6 +108,9 @@ div.score-entry {
 	font-weight: bold;
 } */
 
+/* .page-title {
+  display: inline-block;
+} */
 
 scores {
 	padding-top: 1%;
