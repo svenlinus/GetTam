@@ -1,15 +1,16 @@
-### Priority:
+### Priority
 * Firebase -A
-* Endscreen -F
-* Undo button -L
+* Continue after Tam -L
+* Retro version -L
 
 ### To do:
-* Continue after Tam -L
 * Leaderboard -A
 * List of schools for users to see the order -M
 * Fake GetRedwood for meme
 
-### Done:
+### Done::
+* Javascript buttons in canvas -L
+* Endscreen -L
 * Satisfying screenshake when chaining big tiles -L
 * Experimenting with score -L
 * Score/school display rework -F

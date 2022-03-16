@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', function () {
 	update_fonts();
 })
 
+let mobile = false;
 // Link of website
 let link = window.location.href;
 // Copies link to clipboard.
@@ -22,12 +23,13 @@ function update_fonts() {
     || navigator.userAgent.match(/BlackBerry/i)
     || navigator.userAgent.match(/Windows Phone/i)) {
     //Sets the font-size of the page if on mobile
+    mobile = true;
   	let r = document.querySelector(':root');
   
   	r.style.setProperty('--smallFontSize', '24pt');
   	r.style.setProperty('--scoreFontSize', '24pt');
   	r.style.setProperty('--pFontSize', '20pt');
-  	document.getElementById('first-intro-p').innerHTML = '<button class="btn" onClick="setup()">Restart</button>';
+  	// document.getElementById('first-intro-p').innerHTML = '<button class="btn" onClick="setup()">Restart</button>';
 	// r.style.setProperty('--width', '700px');
   } else {
     //Sets the font-size of the page if not on mobile
@@ -79,6 +81,24 @@ function update_school(current_school) {
 	document.getElementById('school-holder').innerHTML = school_list[current_school];
 	document.getElementById('max-school-holder').innerHTML = school_list[max_school];
 }
+
+
+// A cookie storing whether or not a user has gotten Tam
+// Returns the value of 'gotTam' if no input is specified
+function hasWon(won) {
+	const got_tam_bool = getCookie('gotTam');
+	let got_tam = got_tam_bool == "true";
+
+  if(won == null) return got_tam;
+  
+  if(got_tam == '' || won != got_tam) {
+    got_tam = won;
+    setCookie('gotTam', won, 360);
+  }
+
+  return got_tam;
+}
+
 
 // Cookie manipulation functions copy and pasted from W3Schools
 function setCookie(cname, cvalue, exdays) {

@@ -2,6 +2,7 @@ const odds = () => max(floor(random(1, 3)-0.8), 1);
 let size;
 let score = 0;
 let bestSchool = 1;
+let lost = false;
 
 
 class Board {
@@ -28,6 +29,8 @@ class Board {
     size = 600/this.width;
     this.moved = false;
     this.rows = transpose(this.tiles);
+
+    rectMode(CORNER);
     fill(180);
     noStroke();
     for(let i = 0; i < this.width; i ++) {
@@ -42,7 +45,7 @@ class Board {
     if(won) return;
     this.isFull();
     if(this.gameOver()) {
-      print("Game Over!");
+      lost = true;
       return;
     }
       
@@ -266,7 +269,10 @@ class Tile {
     }
 
     if(this.displayVal == 11) {
-      if(!won) hawkSound.play();
+      if(!won) {
+        hawkSound.play();
+        hasWon(true);
+      }
       won = true;
       this.i = 1.5;
       this.j = 1.5;
@@ -324,7 +330,7 @@ class Tile {
     this.combine = false;
 
     if(this.val >= 6) {
-      if(round(dcam.magSq()) == 0) dcam.add(p5.Vector.random2D());
+      if(round(dcam.magSq()) < 1) dcam.set(p5.Vector.random2D());
       dcam.mult(this.val-5);
       dcam.mult(0.6);
       print(dcam.mag());

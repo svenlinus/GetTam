@@ -16,11 +16,14 @@
 const keys = [];
 let keyDown = [];
 let keyUp = [];
+let mouseIsUp = false;
+
 let movement;
 
 let numbers = false;
 
 let cnv, board, cam, dcam, cyp;
+let restartButton;
 let icons = [];
 
 let won = false;
@@ -45,14 +48,15 @@ function preload() {
 
 
 function setup() {
-  // 
   won = false;
+  lost = false;
   cnv = createCanvas(616, 616);
 	// Tie canvas to a div
 	cnv.parent("board");
 
   score = 0;
   bestSchool = 0;
+  Screen.reset();
 
   update_score(0);
   update_school(0);
@@ -63,11 +67,14 @@ function setup() {
   movement = createVector(0, 0);
   cam = createVector(0, 0);
   dcam = createVector(0, 0);
+  restartButton = new Button("Restart", width/2, height/2, setup);
   
   background(255);
 }
 
 function draw() {
+  if(mouseIsUp) print('up')
+  push();
   translate(8-cam.x, 8-cam.y);
   background(225);
   
@@ -77,6 +84,10 @@ function draw() {
   if(keyDown[39] || keyDown[68]) movement.x = 1;
   
   board.display();
+  pop();
+
+  if(won) win();
+  if(lost) lose();
 
   const k = 0.1, damp = 0.025;
   dcam.x -= (cam.x)*k + dcam.x*damp;  // spring equation
@@ -84,17 +95,18 @@ function draw() {
   cam.add(dcam);
   
   if(keyUp[32]) setup();
-  // if(keys[16] && keyUp[192]) {
-  //   customTiles([
-  //     [7, 6, 0, 0],
-  //     [8, 5, 1, 0],
-  //     [9, 4, 1, 0],
-  //     [10, 3, 2, 0],
-  //   ])
-  // }
+  if(keys[16] && keyUp[192]) {
+    customTiles([
+      [7, 6, 3, 2],
+      [8, 5, 1, 4],
+      [9, 4, 1, 8],
+      [10, 3, 2, 4],
+    ])
+  }
   
   keyDown = [];
   keyUp = [];
+  mouseIsUp = false;
   movement.set(0, 0)
 }
 
@@ -110,6 +122,10 @@ function keyReleased() {
   if(keyCode == 27) clearCookies();
 }
 
+function mouseClicked() {
+  mouseIsUp = true;
+}
+
 
 function clearCookies() {
   setCookie("maxScore", 0, 0);
@@ -122,6 +138,15 @@ function customTiles(tiles) {
   forEach2D(tiles, (t, i, j) => {
     board.tiles[j][i] = t > 0 ? new Tile(j, i, t): 0;
   });
+}
+
+
+function win() {
+  // GUI.fade();
+}
+
+function lose() {
+  Screen.fade();
 }
 
 
