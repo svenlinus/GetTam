@@ -22,9 +22,8 @@ class Button {
     if(this.mouseDown()) {
       this.z = 0;
       this.down = true;
-    }
+    } else this.z = 1;
     if(this.mouseUp()) {
-      this.z = 1;
       this.down = false;
       this.onClick();
     }
@@ -43,7 +42,7 @@ class Button {
   }
 
   mouseOver() {
-    return abs(mouseX-this.x) <= this.width && abs(mouseY-this.y) <= this.height;
+    return abs(mouseX-this.x) <= this.width/2+20 && abs(mouseY-this.y) <= this.height/2+20;
   }
 
   mouseDown() {
