@@ -1,14 +1,14 @@
-### Priority
+### Priority:
 * Firebase -A
 * Continue after Tam -L
-* Retro version -L
+* Retro version (3x3 old school logos) -L
 
 ### To do:
 * Leaderboard -A
 * List of schools for users to see the order -M
 * Fake GetRedwood for meme
 
-### Done::
+### Done:
 * Javascript buttons in canvas -L
 * Endscreen -L
 * Satisfying screenshake when chaining big tiles -L

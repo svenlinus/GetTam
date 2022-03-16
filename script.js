@@ -13,6 +13,7 @@
 
 
 
+
 const keys = [];
 let keyDown = [];
 let keyUp = [];
@@ -53,7 +54,7 @@ function setup() {
   cnv = createCanvas(616, 616);
 	// Tie canvas to a div
 	cnv.parent("board");
-
+  
   score = 0;
   bestSchool = 0;
   Screen.reset();
@@ -70,6 +71,9 @@ function setup() {
   restartButton = new Button("Restart", width/2, height/2, setup);
   
   background(255);
+
+ 
+  
 }
 
 function draw() {
@@ -156,5 +160,7 @@ function lose() {
 //   let pl = (windowWidth-width)/2
 //   cnv.position(pl, pt);
 // }
+
+
 
 
