@@ -65,11 +65,11 @@ class Screen {
     fill(31, 75, 163, min(Screen.alpha, 140));
     rect(0, 0, width, height);
     noStroke();
-    textSize(55);
+    textSize(65);
     fill(0, min(0.2*Screen.textA, 80) );
-    text("GAME OVER", width/2+2, 180+2);
+    text("Game Over", width/2+2, 180+2);
     fill(255, Screen.textA);
-    text("GAME OVER", width/2, 180);
+    text("Game Over", width/2, 180);
     
     Screen.alpha += 1;
     Screen.textA = max(130, 3*Screen.alpha-130)-130;

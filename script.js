@@ -70,10 +70,7 @@ function setup() {
   dcam = createVector(0, 0);
   restartButton = new Button("Restart", width/2, height/2, setup);
   
-  background(255);
-
- 
-  
+  background(255);  
 }
 
 function draw() {
@@ -107,6 +104,7 @@ function draw() {
       [10, 3, 2, 4],
     ])
   }
+
   
   keyDown = [];
   keyUp = [];
