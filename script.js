@@ -10,7 +10,7 @@
 // 4 Marin Academy  1971
 // 2 TamisCal  1990
 
-
+//import {newGame} from './index.js';
 
 
 
@@ -44,6 +44,7 @@ function preload() {
     loadImage("images/sr.jpg"),
     loadImage("images/branson.png"),
     loadImage("images/tam.png"),
+    loadImage("images/farr.png"),
   ];
 
   hawkSound = loadSound("sounds/hawk.mp3");
@@ -87,6 +88,8 @@ function setup() {
   restartButton = new Button("Restart", width/2, height/2, setup);
   
   background(255);  
+
+  
 }
 
 function draw() {
@@ -104,7 +107,7 @@ function draw() {
   board.display();
   pop();
 
-  if(won) win();
+  
   if(lost) lose();
 
   const k = 0.1, damp = 0.025;
@@ -113,14 +116,14 @@ function draw() {
   cam.add(dcam);
   
   if(keyUp[32]) setup();
-  if(keys[16] && keyUp[192]) {
-    customTiles([
-      [7, 6, 3, 2],
-      [8, 5, 1, 4],
-      [9, 4, 1, 8],
-      [10, 3, 2, 4],
-    ])
-  }
+  // if(keys[16] && keyUp[192]) {
+  //   customTiles([
+  //     [7, 6, 3, 2],
+  //     [8, 5, 1, 4],
+  //     [9, 4, 1, 8],
+  //     [10, 3, 2, 4],
+  //   ])
+  // }
 
   
   keyDown = [];
@@ -161,14 +164,21 @@ function customTiles(tiles) {
 }
 
 
+const keepGoing = () => {
+  maxVal = 12; 
+  won = false;
+  tamCoords.tile.i = tamCoords.i;
+  tamCoords.tile.j = tamCoords.j;
+  document.getElementById('win-buttons').innerHTML = '';
+}
+
 function win() {
-  // GUI.fade();
+  // document.getElementById('win-buttons').innerHTML = '<button class="btn" onClick="keepGoing()">Continue</button><button class="btn" onClick="setup()">Restart</button>';
 }
 
 function lose() {
   Screen.fade();
 }
-
 
 
 // function windowResized() {

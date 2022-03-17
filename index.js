@@ -3,9 +3,7 @@
    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.8/firebase-app.js";
   import { getDatabase, ref, set, child, update, remove, push } from "https://www.gstatic.com/firebasejs/9.6.8/firebase-database.js";
 
-function newGame() {
-  push(game,1);
-}
+
 
 const firebaseConfig = {
   apiKey: "AIzaSyBQp9ljmUgP1ZuxcaGaY3KJHb8h9GGRlS8",
@@ -20,10 +18,15 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 var database = getDatabase(app);
-var logs = ref(database, 'tests');
+var logs = ref(database, 'Mar17');
 
 
 push(logs,1);
 
 var game = ref(database, 'gamesPlayed');
+
+export function newGame() {
+  push(game,1);
+}
+
 

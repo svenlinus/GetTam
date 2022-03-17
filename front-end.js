@@ -38,6 +38,7 @@ function update_fonts() {
 }
 
 
+
 // Call to update the score on the page.
 // Will update high score too and manage
 // High score.
@@ -65,6 +66,7 @@ var school_list = [
 	"San Rafael",
 	"Branson",
 	"Tamalpais",
+  "JC Farr"
 ]
 
 

@@ -6,7 +6,8 @@ let score = 0;
 let bestSchool = 1;
 let lost = false;
 
-
+let maxVal = 11;
+let tamCoords = {i:0, j:0};
 
 class Board {
   constructor(w, h) {
@@ -194,7 +195,7 @@ class Tile {
 
     // NESW
     this.neighbors = [];
-    if(!won) {
+    if(!won && this.i % 1 == 0) {
       if(this.j > 0) this.neighbors.push(parent.tiles[this.i][this.j-1]);
       if(this.i < parent.width-1) this.neighbors.push(parent.tiles[this.i+1][this.j]);
       if(this.j < parent.width-1) this.neighbors.push(parent.tiles[this.i][this.j+1]);
@@ -206,7 +207,8 @@ class Tile {
     // parents.tiles[this.i][this.j] = this;
     const k = 0.05, damp = 0.1;
     let t = 1;
-    if(this.displayVal == 11) t = 2;
+    if(this.displayVal == maxVal) t = 2;
+    else if(this.displayVal >= 11) t = 1.25;
     else if(this.displayVal >= 9) t = 1.13;
     else if(this.displayVal >= 7) t = 1.08;
     
@@ -221,7 +223,7 @@ class Tile {
     textAlign(CENTER, CENTER);
     textSize(70-this.val);
     
-    if(this.displayVal < 11 && this.contact && (this.pi != this.i || this.pj != this.j)) {
+    if(this.displayVal < maxVal && this.contact && (this.pi != this.i || this.pj != this.j)) {
       const dx = this.i-this.pi;
       const dy = this.j-this.pj;
 
@@ -244,15 +246,18 @@ class Tile {
       pop();
     }
 
-    if(this.displayVal == 11) {
+    if(this.displayVal == maxVal) {
       if(!won) {
         hawkSound.play();
         hasWon(true);
+        win();
+        tamCoords = {i:this.i, j:this.j, tile:this};
       }
       won = true;
       this.i = 1.5;
       this.j = 1.5;
     }
+
 
     
     this.pi = lerp(this.pi, this.i, s);
@@ -260,7 +265,7 @@ class Tile {
     
     this.pos.set(this.pi*size, this.pj*size);
     
-    if(won && this.displayVal != 11 && (this.i > 0 && this.i < 3 && this.j > 0 && this.j < 3)) return;
+    if(won && this.displayVal != maxVal && (this.i > 0 && this.i < 3 && this.j > 0 && this.j < 3)) return;
     
     push();
     translate(this.pos);
@@ -309,7 +314,6 @@ class Tile {
       if(round(dcam.magSq()) < 1) dcam.set(p5.Vector.random2D());
       dcam.mult(this.val-5);
       dcam.mult(0.6);
-      print(dcam.mag());
     }
   }
 
