@@ -310,7 +310,7 @@ class Tile {
     this.contact = true;
     this.combine = false;
 
-    if(this.val >= 6) {
+    if(this.val >= 7) {
       if(round(dcam.magSq()) < 1) dcam.set(p5.Vector.random2D());
       dcam.mult(this.val-5);
       dcam.mult(0.6);
