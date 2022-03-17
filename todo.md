@@ -1,10 +1,12 @@
 ### Priority:
 * Firebase -A
 * Continue after Tam -L
-* Retro version (3x3 old school logos) -L
+* Leaderboard -A
+* Daily winner -A
+* Medals for daily winner
 
 ### To do:
-* Leaderboard -A
+* Retro version (3x3 old school logos) -L
 * List of schools for users to see the order -M
 * Fake GetRedwood for meme
 

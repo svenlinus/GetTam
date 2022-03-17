@@ -1,8 +1,11 @@
+
+
 const odds = () => max(floor(random(1, 3)-0.8), 1);
 let size;
 let score = 0;
 let bestSchool = 1;
 let lost = false;
+
 
 
 class Board {
@@ -156,34 +159,7 @@ class Board {
   }
 }
 
-function forEach2D(arr, f) {
-  for(let i = 0; i < arr.length; i ++) {
-    for(let j = 0; j < arr[i].length; j ++) {
-      f(arr[i][j], i, j);
-    }
-  }
-}
 
-function transpose(arr) {
-  const newArr = [];
-  for(let i = 0; i < arr[0].length; i ++) {
-    newArr.push([]);
-    for(let j = 0; j < arr.length; j ++) {
-      newArr[i][j] = arr[j][i];
-    }
-  }
-  return newArr;
-}
-
-function table(arr, prop) {
-  prop = prop || "val";
-  for(let i = 0; i < arr.length; i ++) {
-    let msg = "";
-    for(let j = 0; j < arr[i].length; j ++)
-      msg += arr[i][j] ? arr[i][j][prop] + " " : "0 ";
-    print("[ " + msg + "]");
-  }
-}
 
 class Tile {
   constructor(i, j, val) {
@@ -445,3 +421,37 @@ class Tile {
     if(this.i != i) this.parent.moved = true;
   }
 }
+
+
+
+
+
+function forEach2D(arr, f) {
+  for(let i = 0; i < arr.length; i ++) {
+    for(let j = 0; j < arr[i].length; j ++) {
+      f(arr[i][j], i, j);
+    }
+  }
+}
+
+function transpose(arr) {
+  const newArr = [];
+  for(let i = 0; i < arr[0].length; i ++) {
+    newArr.push([]);
+    for(let j = 0; j < arr.length; j ++) {
+      newArr[i][j] = arr[j][i];
+    }
+  }
+  return newArr;
+}
+
+function table(arr, prop) {
+  prop = prop || "val";
+  for(let i = 0; i < arr.length; i ++) {
+    let msg = "";
+    for(let j = 0; j < arr[i].length; j ++)
+      msg += arr[i][j] ? arr[i][j][prop] + " " : "0 ";
+    print("[ " + msg + "]");
+  }
+}
+

@@ -26,6 +26,8 @@ let numbers = false;
 let cnv, board, cam, dcam, cyp;
 let restartButton;
 let icons = [];
+let hawk;
+let pastWinner = false;
 
 let won = false;
 
@@ -47,8 +49,22 @@ function preload() {
   hawkSound = loadSound("sounds/hawk.mp3");
 }
 
+function hawkIcon() {
+  let img = createImg(
+    "images/tamicon.png",
+    "Hawk Icon"
+  );
+  img.size(72, 60);
+  img.position(610, 60);
+  return img;
+}
+
 
 function setup() {
+  if(hasWon()) {
+    hawk = hawkIcon();
+    pastWinner = true;
+  }
   won = false;
   lost = false;
   cnv = createCanvas(616, 616);
@@ -74,6 +90,7 @@ function setup() {
 }
 
 function draw() {
+  if(pastWinner) hawk.position(windowWidth/2 + 310, 75);
   if(mouseIsUp) print('up')
   push();
   translate(8-cam.x, 8-cam.y);
@@ -132,6 +149,7 @@ function mouseClicked() {
 function clearCookies() {
   setCookie("maxScore", 0, 0);
   setCookie("maxSchool", 0, 0);
+  setCookie("gotTam", 0, 0);
   setup();
 }
 
