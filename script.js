@@ -11,8 +11,10 @@
 // 2 TamisCal  1990
 
 //import {newGame} from './index.js';
+//import {newGame} from index.js;
 
 
+const start = new Event("start");
 
 const keys = [];
 let keyDown = [];
@@ -62,7 +64,9 @@ function hawkIcon() {
 
 
 function setup() {
-  if(hasWon()) {
+  document.dispatchEvent(start);
+  if(hasWon() || getCookie("maxSchool") == "Tamalpais") {
+    hasWon(true);
     hawk = hawkIcon();
     pastWinner = true;
   }
@@ -87,10 +91,10 @@ function setup() {
   dcam = createVector(0, 0);
   restartButton = new Button("Restart", width/2, height/2, setup);
   
-  background(255);  
+  background(255); 
 
-  
 }
+
 
 function draw() {
   if(pastWinner) hawk.position(windowWidth/2 + 310, 75);

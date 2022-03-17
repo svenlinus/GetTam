@@ -3,6 +3,13 @@
    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.8/firebase-app.js";
   import { getDatabase, ref, set, child, update, remove, push } from "https://www.gstatic.com/firebasejs/9.6.8/firebase-database.js";
 
+export function newGame() {
+  push(game,1);
+}
+
+export function printBruh() {
+  console.log("bruh2");
+}
 
 
 const firebaseConfig = {
@@ -25,8 +32,7 @@ push(logs,1);
 
 var game = ref(database, 'gamesPlayed');
 
-export function newGame() {
-  push(game,1);
-}
+
+
 
 
