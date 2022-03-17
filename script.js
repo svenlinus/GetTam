@@ -65,7 +65,7 @@ function hawkIcon() {
 
 function setup() {
   document.dispatchEvent(start);
-  if(hasWon() || getCookie("maxSchool") == "Tamalpais") {
+  if(hasWon() || getCookie("maxSchool") == 10) {
     hasWon(true);
     hawk = hawkIcon();
     pastWinner = true;
