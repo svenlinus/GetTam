@@ -122,14 +122,14 @@ function draw() {
   cam.add(dcam);
   
   if(keyUp[32]) setup();
-  if(keys[16] && keyUp[192]) {
-    customTiles([
-      [7, 6, 3, 2],
-      [8, 5, 1, 4],
-      [9, 4, 1, 8],
-      [10, 3, 2, 4],
-    ])
-  }
+  // if(keys[16] && keyUp[192]) {
+  //   customTiles([
+  //     [7, 6, 3, 2],
+  //     [8, 5, 1, 4],
+  //     [9, 4, 1, 8],
+  //     [10, 3, 2, 4],
+  //   ])
+  // }
 
   
   keyDown = [];
