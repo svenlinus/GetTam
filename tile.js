@@ -311,9 +311,9 @@ class Tile {
     this.combine = false;
 
     if(this.val >= 7) {
-      if(round(dcam.magSq()) < 1) dcam.set(p5.Vector.random2D());
+      if(round(dcam.mag()*10)/10 < 0.3) dcam.set(p5.Vector.random2D());
       dcam.mult(this.val-5);
-      dcam.mult(0.6);
+      dcam.mult(0.9);
     }
   }
 
@@ -458,4 +458,3 @@ function table(arr, prop) {
     print("[ " + msg + "]");
   }
 }
-

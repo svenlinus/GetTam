@@ -46,7 +46,7 @@ function preload() {
     loadImage("images/sr.jpg"),
     loadImage("images/branson.png"),
     loadImage("images/tam.png"),
-    loadImage("images/farr.png"),
+    loadImage("images/last.png"),
   ];
 
   hawkSound = loadSound("sounds/hawk.mp3");
@@ -64,7 +64,9 @@ function hawkIcon() {
 
 
 function setup() {
+  document.getElementById('win-buttons').innerHTML = '';
   document.dispatchEvent(start);
+  
   if(hasWon() || getCookie("maxSchool") == 10) {
     hasWon(true);
     hawk = hawkIcon();
@@ -72,6 +74,7 @@ function setup() {
   }
   won = false;
   lost = false;
+  continued = false;
   cnv = createCanvas(616, 616);
 	// Tie canvas to a div
 	cnv.parent("board");
@@ -92,7 +95,6 @@ function setup() {
   restartButton = new Button("Restart", width/2, height/2, setup);
   
   background(255); 
-
 }
 
 
@@ -114,20 +116,20 @@ function draw() {
   
   if(lost) lose();
 
-  const k = 0.1, damp = 0.025;
+  const k = 0.1, damp = 0.1;
   dcam.x -= (cam.x)*k + dcam.x*damp;  // spring equation
   dcam.y -= (cam.y)*k + dcam.y*damp;
   cam.add(dcam);
   
   if(keyUp[32]) setup();
-  // if(keys[16] && keyUp[192]) {
-  //   customTiles([
-  //     [7, 6, 3, 2],
-  //     [8, 5, 1, 4],
-  //     [9, 4, 1, 8],
-  //     [10, 3, 2, 4],
-  //   ])
-  // }
+  if(keys[16] && keyUp[192]) {
+    customTiles([
+      [7, 6, 3, 2],
+      [8, 5, 1, 4],
+      [9, 4, 1, 8],
+      [10, 3, 2, 4],
+    ])
+  }
 
   
   keyDown = [];
