@@ -1,15 +1,15 @@
-~
+
 // Import the functions you need from the SDKs you need
-   import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.8/firebase-app.js";
-  import { getDatabase, ref, set, child, update, remove, push, get } from "https://www.gstatic.com/firebasejs/9.6.8/firebase-database.js";
+ import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.8/firebase-app.js";
+import { getDatabase, ref, set, child, update, remove, push, get } from "https://www.gstatic.com/firebasejs/9.6.8/firebase-database.js";
 
 export function newGame() {
-  var games = get(child(reference, 'TotalGamesPlayed')).then((snapshot)=> {
+  var games = get(child(reference, 'TotalGamesPlayed')).then((snapshot) => {
     var temp = snapshot.val();
     set(game, temp+1);
   });
 
-    var breh = get(child(reference, dat)).then((snapshot)=> {
+  var breh = get(child(reference, dat)).then((snapshot) => {
     var temp = snapshot.val();
     set(logs, temp+1);
   });
@@ -20,12 +20,12 @@ export function newGame() {
     setCookie('id', createID(), 365);
   }
   // var path = 'PlayerData/' + getCookie('id');
-  // var gamesPlayed = ref(database, 'PlayerData');
+  // var gamesPlayed = ref(database, path);
 
-  // var data = get(gamesPlayed,getCookie('id')).then((snapshot)=> {
+  // var data = get(reference,path).then((snapshot)=> {
   //   var temp = snapshot.val();
    
-  //   console.log(snapshot.val());
+  //   console.log(snapshot.val().PlayerData);
   //   var tempRef = ref(database,path);
   //   if(temp === null) {
   //     set(tempRef,1);
@@ -79,6 +79,7 @@ let letters = ['a','b','c','d','e','f','g','h','i','j','k','l','m', 'n', 'o', 'p
 // if(id == '') {
 //   setCookie('id',createID(),365);
 // }
+
 
 
 

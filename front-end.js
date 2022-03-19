@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', function () {
-	// document.getElementById('copy-link').addEventListener('click', copy_link);
 	update_fonts();
 })
 
@@ -52,6 +51,8 @@ function update_score(current_score) {
 	}
 	document.getElementById('score-holder').innerHTML = current_score;
 	document.getElementById('max-score-holder').innerHTML = max_score;
+
+  
 }
 
 var school_list = [

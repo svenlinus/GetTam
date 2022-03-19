@@ -10,8 +10,6 @@
 // 4 Marin Academy  1971
 // 2 TamisCal  1990
 
-//import {newGame} from './index.js';
-//import {newGame} from index.js;
 
 
 const start = new Event("start");
@@ -66,6 +64,7 @@ function hawkIcon() {
 function setup() {
   document.getElementById('win-buttons').innerHTML = '';
   document.dispatchEvent(start);
+  // document.dispatchEvent(highScore);
   
   if(hasWon() || getCookie("maxSchool") == 10) {
     hasWon(true);
