@@ -85,13 +85,13 @@ function setup() {
   update_score(0);
   update_school(0);
   
-  addSwipe();
-  
   board = new Board(4, 4);
   movement = createVector(0, 0);
   cam = createVector(0, 0);
   dcam = createVector(0, 0);
   restartButton = new Button("Restart", width/2, height/2, setup);
+  
+  addSwipe();
   
   background(255); 
 }
@@ -99,7 +99,6 @@ function setup() {
 
 function draw() {
   if(pastWinner) hawk.position(windowWidth/2 + 310, 75);
-  if(mouseIsUp) print('up')
   push();
   translate(8-cam.x, 8-cam.y);
   background(225);
@@ -121,6 +120,10 @@ function draw() {
   cam.add(dcam);
   
   if(keyUp[32]) setup();
+  if(keyUp[82] && !lost && !won) {
+    board.rotate();
+    movement.set(0, 0);
+  }
   // if(keys[16] && keyUp[192]) {
   //   customTiles([
   //     [7, 6, 3, 2],

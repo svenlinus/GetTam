@@ -1,7 +1,6 @@
 ### Priority:
-* Firebase -A
-* Continue after Tam -L
-* Leaderboard -A
+* Leaderboard data -A
+* Leaderboard frontend -LF
 * Daily winner -A
 * Medals for daily winner
 
@@ -11,6 +10,9 @@
 * Fake GetRedwood for meme
 
 ### Done:
+* Rotate borad -L
+* Continue after Tam -L
+* Firebase -A
 * Javascript buttons in canvas -L
 * Endscreen -L
 * Satisfying screenshake when chaining big tiles -L

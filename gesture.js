@@ -1,7 +1,8 @@
-let touchstartX = 0
-let touchendX = 0
-let touchstartY = 0
-let touchendY = 0
+let touchstartX = []
+let touchendX = []
+let touchstartY = []
+let touchendY = []
+let touchNum = 0
 
 const threshold = 20
 
@@ -10,33 +11,59 @@ const threshold = 20
 
 function addSwipe() {
 
-  const board = document.getElementById('board')
+  const boardElement = document.getElementById('board')
   
   function handleGesture() {
-    if(abs(movement.y) == 0 && abs(touchendX-touchstartX) > abs(touchendY-touchstartY)){
-      if (touchendX < touchstartX-threshold) movement.x = -1
-      if (touchendX > touchstartX+threshold) movement.x = 1
+    const tix = touchstartX[0], tiy = touchstartY[0];  // touch-initial
+    const tfx = touchendX[0], tfy = touchendY[0];      // touch-final
+    
+    if(touchNum == 2) {
+      board.rotate();
+      touchNum = 0;
+      return;
     }
-    if(abs(movement.x) == 0 && abs(touchendX-touchstartX) < abs(touchendY-touchstartY)){
-      if (touchendY < touchstartY-threshold) movement.y = -1
-      if (touchendY > touchstartY+threshold) movement.y = 1
+
+    
+    if(abs(movement.y) == 0 && abs(tfx-tix) > abs(tfy-tiy)){
+      if (tfx < tix-threshold) movement.x = -1
+      if (tfx > tix+threshold) movement.x = 1
     }
+    movement.y = swipingVertDir(tix, tiy, tfx, tfy);
   }
   
-  board.addEventListener('touchstart', e => {
-    touchstartX = e.changedTouches[0].screenX
-    touchstartY = e.changedTouches[0].screenY
+  boardElement.addEventListener('touchstart', e => {
+    touchstartX = mapList(e.changedTouches, t => t.screenX);
+    touchstartY = mapList(e.changedTouches, t => t.screenY);
+    touchNum = e.touches.length;
   })
   
-  board.addEventListener('touchend', e => {
-    touchendX = e.changedTouches[0].screenX
-    touchendY = e.changedTouches[0].screenY
-    handleGesture()
+  boardElement.addEventListener('touchend', e => {
+    touchendX = mapList(e.changedTouches, t => t.screenX);
+    touchendY = mapList(e.changedTouches, t => t.screenY);
+    if(touchNum > 0) handleGesture();
   })
 
-  board.style.setProperty("overscroll-behavior", "contain");
+
+  boardElement.style.setProperty("overscroll-behavior", "contain");
 
 }
+
+function swipingVertDir(tix, tiy, tfx, tfy) {
+  if(abs(movement.x) == 0 && abs(tfx-tix) < abs(tfy-tiy)){
+    if (tfy < tiy-threshold) return -1
+    if (tfy > tiy+threshold) return 1
+  }
+  return 0;
+}
+
+function mapList(list, f) {
+  const newArr = [];
+  for(let i = 0; i < list.length; i ++) {
+    newArr[i] = f(list[i]);
+  }
+  return newArr;
+}
+
 
 // Stops scrolling with arrow keys
 window.addEventListener("keydown", function(e) {

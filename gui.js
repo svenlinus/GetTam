@@ -24,9 +24,10 @@ class Button {
       this.down = true;
     } else this.z = 1;
     if(this.mouseUp()) {
-      this.down = false;
       this.onClick();
     }
+
+    if(!mouseIsPressed) this.down = false;
 
     push();
     translate(this.x, this.y);

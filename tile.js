@@ -64,6 +64,12 @@ class Board {
     }
   }
 
+  rotate() {  // assuming w = h
+    this.tiles = transpose(this.tiles, true);
+    this.tiles = reverseI(this.tiles, true);
+    this.rows = transpose(this.tiles);
+  }
+
   isFull() {  // assuming w = h
     let full = true;
     for(let i = 0; i < this.width; i ++) {
@@ -438,11 +444,29 @@ function forEach2D(arr, f) {
   }
 }
 
-function transpose(arr) {
+function reverseI(arr, update) {
+  const newArr = [];
+  const w = arr.length-1;
+  const h = arr[0].length-1;
+  for(let i = 0; i < arr.length; i ++) {
+    newArr.push([]);
+    for(let j = 0; j < arr[0].length; j ++) {
+      if(update) arr[w-i][j].i = i;
+      newArr[i][j] = arr[w-i][j];
+    }
+  }
+  return newArr;
+}
+
+function transpose(arr, update) {
   const newArr = [];
   for(let i = 0; i < arr[0].length; i ++) {
     newArr.push([]);
     for(let j = 0; j < arr.length; j ++) {
+      if(update) {
+        arr[j][i].i = i;
+        arr[j][i].j = j;
+      }
       newArr[i][j] = arr[j][i];
     }
   }
@@ -458,3 +482,16 @@ function table(arr, prop) {
     print("[ " + msg + "]");
   }
 }
+
+
+
+
+// function copy2D(arr) {
+//   const newArr = [];
+//   for(let i = 0; i < arr.length; i ++) {
+//     newArr.push([]);
+//     for(let j = 0; j < arr[i].length; j ++) {
+//       newArr[i][j] = arr[i][j];
+//     }
+//   }
+// }
