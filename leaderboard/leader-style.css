@@ -1,16 +1,17 @@
 :root {
-  --blue: #1f4ba3;
+  --c1: #005998;
   --white: #FFFFFF;
   --black: #000000;
 }
 
 
 main {
-  width: 900px;
-  margin: 3em auto 3em;
   font-family: 'Montserrat', sans-serif;
+	padding-top: 50px;
+	margin: 0px auto;
+	width: 900px;
+	border-top: 10px solid #6c7999;
   border-left: 1px solid #c0b4b4;
-	border-top: 1px solid #6c7999;
 	border-radius: 5px;
 	box-shadow: 5px 5px 3px #6c7999;
 }
@@ -19,12 +20,49 @@ main {
   padding: 0px 150px 50px;
 }
 
-tr {
-  margin: 20px;
-}
-
 h1 {
-  color: var(--blue);
+  color: #1f4ba3;
   padding: 10px 0px;
   font-size: 48px;
+}
+
+
+.content {
+  border-collapse: collapse;
+  margin: 25px 0;
+  font-size: 1em;
+  width: 600px;
+  box-shadow: 0 0 20px rgb(0, 0, 0, .15);
+}
+
+.content thead tr {
+  background-color: var(--c1);
+  color: var(--white);
+  text-align: left;
+  font-weight: bold;
+}
+
+.content th {
+  padding: 12px 25px;
+}
+.content td {
+  padding: 18px 25px;
+}
+
+.content tbody tr {
+  border-bottom: 1px solid #ddd;
+  color: #444;
+}
+
+.content tbody tr:nth-of-type(even) {
+  background-color: #f3f3f3;
+}
+
+.content tbody tr:last-of-type {
+  border-bottom: 2px solid var(--c1);
+}
+
+.content tbody tr.active-row {
+  font-weight: bold;
+  color: var(--c1);
 }

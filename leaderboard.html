@@ -4,7 +4,8 @@
         <link rel="stylesheet" type="text/css" href="leaderboard/leader-style.css">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <script src="leaderboard/leaderboard.js"></script>
+        <script type="module" src="leaderboard/leaderboard.js"></script>
+        <script type="module" src='modules/index.js'></script>
     </head>
     <!-- BEGIN Content -->
 
@@ -15,13 +16,16 @@
       <div id="options">
         
       </div>
-      <table>
-<!--         <tr  class="bg-info">
-          <th>Name</th>
-          <th>Score</th>
-        </tr> -->
+      <table class="content">
+        <thead>
+          <tr>
+            <th>Rank</th>
+            <th>Name</th>
+            <th>Score</th>
+          </tr>
+        </thead>
 
-        <tbody id="myTable">
+        <tbody id="table-content">
           
         </tbody>
         

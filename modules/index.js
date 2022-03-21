@@ -1,6 +1,6 @@
 
 // Import the functions you need from the SDKs you need
- import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.8/firebase-app.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.8/firebase-app.js";
 import { getDatabase, ref, set, child, update, remove, push, get } from "https://www.gstatic.com/firebasejs/9.6.8/firebase-database.js";
 
 export function newGame() {
@@ -39,17 +39,19 @@ export function newGame() {
 }
 
 export function highScoreEvent() {
-  //set(leaderboard, [0,0,0,0,0,0,0,0,0,0]);
-
+  
   var board = get(child(reference, 'Leaderboard')).then((snapshot) => {
     var temp = snapshot.val();
   
     var high = parseInt(getCookie("maxScore"));
+    var id = getCookie("id");
 
+    //sortBoard(temp,high,leaderboard);
     var index;
-    if(high > temp[temp.length-1]) {
-      for(var i = temp.length-2; i >=0; i--) {       
-        if(temp[i] > high) {
+    if(high > temp[temp.length-1].score) {
+      for(var i = temp.length-2; i >= 0; i--) {
+        if(id == temp[i].id && high == temp[i].score) return;
+        if(temp[i].score > high) {
           index = i+1;
           break;
         }
@@ -57,25 +59,48 @@ export function highScoreEvent() {
           index = 0;
         }
       }
-      console.log(index);
       var newBoard = [];
+      
       for(var i = 0; i < temp.length; i++) {
         if(i === index) {
-          newBoard.push(high);
+          newBoard.push({
+            name: getCookie('username'),
+            score: high,
+            id: getCookie('id')
+            });
         }
         newBoard.push(temp[i]);
       }
-    newBoard.pop();
-    set(leaderboard,newBoard);
+      newBoard.pop();
+      set(leaderboard, newBoard);
     }
 
   });
 }
 
-function resetBoard() {
-  var b = []
-  
+
+
+export async function getBoard() {
+  var board = await get(child(reference, 'Leaderboard'))
+  return board.val();
 }
+
+function checkDailyBoard() {
+  var bibson = get(child(reference, dat+'-Leaderboard')).then((snapshot) => {
+    var temp = snapshot.val();
+    
+  });
+}
+
+export function resetBoard() {
+  var b = [];
+  for(var i = 0; i < 10; i++) {
+    b.push({name: 'Brah', score: 0, id: 'aaa000'});
+  }
+  set(leaderboard, b);
+}
+
+
 
 export function printBruh() {
   console.log("bruh2");
@@ -112,6 +137,7 @@ var logs = ref(database, dat);
 
 var game = ref(database, 'TotalGamesPlayed');
 var leaderboard = ref(database, 'Leaderboard');
+var dailyBoard = ref(database, dat + '-Leaderboard');
 
 let letters = ['a','b','c','d','e','f','g','h','i','j','k','l','m', 'n', 'o', 'p', 'q','r','s','t','u','v','w','x','y','z'];
 

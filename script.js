@@ -14,6 +14,8 @@
 
 const start = new Event("start");
 const highScore = new Event("highScore");
+const reset = new Event("resetBoard");
+
 
 const keys = [];
 let keyDown = [];

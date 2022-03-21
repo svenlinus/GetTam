@@ -188,10 +188,10 @@ b {
 
 /* attributes for phone screen */
 @media only screen and (max-width: 480px) {
-  main {
-    font-size: 20px;
-  }
     .sticky {
         display: none;
     }
+    zoom: 3; 
+    -moz-transform: scale(3); 
+    -moz-transform-origin: 0 0;
 }
