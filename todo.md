@@ -1,6 +1,6 @@
 ### Priority:
 * Leaderboard data -A
-* Leaderboard frontend -LF
+* Leaderboard front end -LF
 * Daily winner -A
 * Medals for daily winner
 
@@ -10,6 +10,7 @@
 * Fake GetRedwood for meme
 
 ### Done:
+* Credits page -C
 * Rotate borad -L
 * Continue after Tam -L
 * Firebase -A
@@ -19,3 +20,4 @@
 * Experimenting with score -L
 * Score/school display rework -F
 * Game Over check -L
+

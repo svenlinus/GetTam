@@ -1,0 +1,197 @@
+@import url('https://fonts.googleapis.com/css?family=Caveat:400,700&display=swap&subset=cyrillic');
+
+:root {
+  --blue: #1f4ba3;
+  --white: #FFFFFF;
+  --black: #000000;
+}
+
+::selection {
+  color: black;
+  color: black;
+  background: #1f4ba3;
+  background: var(--blue, #1f4ba3);
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background: white;
+}
+
+main {
+  position: relative;
+  width: 900px;
+/*   padding-top: 30%; */
+  margin: 3em auto 3em;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 44px;
+  font-size: calc(22px + (36 - 22) * ((100vw - 980px) / (1400 - 980)));
+  white-space: nowrap;
+  color: black;
+  border-left: 1px solid #c0b4b4;
+	border-top: 1px solid #6c7999;
+	border-radius: 5px;
+	box-shadow: 5px 5px 3px #6c7999;
+}
+
+@media only screen and (max-width: 980px) {
+  main {
+    font-size: 22px;
+  }
+}
+
+@media only screen and (min-width: 1400px) {
+  main {
+    font-size: 36px;
+  }
+}
+
+/* Scroller */
+.scroll-window {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+/* attributes for computer screen */
+@media only screen and (min-width: 480px) {
+    body {
+        display: flex;
+    }
+    main {
+        overflow: hidden;
+    }
+    @keyframes scroll {
+        0% {
+          opacity: 0;
+          transform: translate3d(0, 70vh, 0);
+        }
+      
+        10% {
+          opacity: 1;
+        }
+      
+        95% {
+          opacity: 1;
+          transform: translate3d(0, -100vh, 0);
+        }
+      
+        100% {
+          transform: translate3d(0, -100vh, 0);
+          opacity: 0;
+        }
+      }
+    .scroll-window{
+      animation: scroll 35s linear infinite
+    }
+    #tap-screen {
+        display: none;
+    }
+}
+
+/* Sections */
+section {
+  position: relative;
+  padding-top: 20%;
+}
+
+section:last-child {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  transform: translateY(100%);
+}
+
+/* List */
+dl {
+  font-size: .6em;
+  line-height: 1.5;
+}
+
+dl:after {
+  content: '';
+  display: table;
+  clear: both;
+}
+
+dt,
+dd {
+  float: left;
+  width: 50%;
+  box-sizing: border-box;
+}
+
+dt {
+  text-align: right;
+  padding-right: 10px;
+}
+
+dd {
+  margin: 0;
+  padding-left: 10px;
+  text-align: left;
+  text-transform: uppercase;
+  color: #1f4ba3;
+  color: var(--blue, #1f4ba3);
+}
+
+/* Typography */
+
+h3,
+p{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  backface-visibility: hidden;
+}
+
+h2 {
+  font-weight: 400;
+  font-size: .8em;
+  text-align: center;
+  margin-bottom: 1.5em;
+}
+
+h3 {
+  font-weight: 400;
+  font-size: .8em;
+}
+
+p {
+  font-weight: 400;
+  color: #1f4ba3;
+  color: var(--blue, #1f4ba3);
+}
+
+span {
+  text-transform: uppercase;
+  color: black;
+}
+
+b {
+  font-weight: 700;
+}
+
+.sticky {
+    position: fixed;
+    font-size:1.5rem;
+    transform: none;
+    margin: 10px;
+}
+
+/* attributes for phone screen */
+@media only screen and (max-width: 480px) {
+  main {
+    font-size: 20px;
+  }
+    .sticky {
+        display: none;
+    }
+}

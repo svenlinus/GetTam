@@ -36,7 +36,7 @@ function update_fonts() {
   }
 }
 
-
+//const highScore = new Event("highScore");
 
 // Call to update the score on the page.
 // Will update high score too and manage
@@ -48,11 +48,12 @@ function update_score(current_score) {
 		|| max_score < current_score) {
 		max_score = current_score;
 		setCookie('maxScore', current_score, 360);
+    // document.dispatchEvent(highScore);
 	}
 	document.getElementById('score-holder').innerHTML = current_score;
 	document.getElementById('max-score-holder').innerHTML = max_score;
 
-  
+  //document.dispatchEvent(highScore);
 }
 
 var school_list = [

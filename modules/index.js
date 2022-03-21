@@ -38,6 +38,45 @@ export function newGame() {
   //child(reference, path)
 }
 
+export function highScoreEvent() {
+  //set(leaderboard, [0,0,0,0,0,0,0,0,0,0]);
+
+  var board = get(child(reference, 'Leaderboard')).then((snapshot) => {
+    var temp = snapshot.val();
+  
+    var high = parseInt(getCookie("maxScore"));
+
+    var index;
+    if(high > temp[temp.length-1]) {
+      for(var i = temp.length-2; i >=0; i--) {       
+        if(temp[i] > high) {
+          index = i+1;
+          break;
+        }
+        else if(i === 0) {
+          index = 0;
+        }
+      }
+      console.log(index);
+      var newBoard = [];
+      for(var i = 0; i < temp.length; i++) {
+        if(i === index) {
+          newBoard.push(high);
+        }
+        newBoard.push(temp[i]);
+      }
+    newBoard.pop();
+    set(leaderboard,newBoard);
+    }
+
+  });
+}
+
+function resetBoard() {
+  var b = []
+  
+}
+
 export function printBruh() {
   console.log("bruh2");
 }
@@ -72,6 +111,7 @@ var logs = ref(database, dat);
 //push(logs,1);
 
 var game = ref(database, 'TotalGamesPlayed');
+var leaderboard = ref(database, 'Leaderboard');
 
 let letters = ['a','b','c','d','e','f','g','h','i','j','k','l','m', 'n', 'o', 'p', 'q','r','s','t','u','v','w','x','y','z'];
 

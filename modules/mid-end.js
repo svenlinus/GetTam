@@ -1,4 +1,4 @@
-import {newGame, printBruh} from './index.js';
+import {newGame, printBruh, highScoreEvent} from './index.js';
 
 
 document.addEventListener("start", () => {
@@ -6,7 +6,8 @@ document.addEventListener("start", () => {
 });
 
 document.addEventListener("highScore", () => {
-  console.log('bruh');
+  highScoreEvent();
+  
 });
 
   

@@ -13,6 +13,7 @@
 
 
 const start = new Event("start");
+const highScore = new Event("highScore");
 
 const keys = [];
 let keyDown = [];
@@ -64,7 +65,8 @@ function hawkIcon() {
 function setup() {
   document.getElementById('win-buttons').innerHTML = '';
   document.dispatchEvent(start);
-  // document.dispatchEvent(highScore);
+  document.dispatchEvent(highScore);
+  
   
   if(hasWon() || getCookie("maxSchool") == 10) {
     hasWon(true);
@@ -127,9 +129,9 @@ function draw() {
   // if(keys[16] && keyUp[192]) {
   //   customTiles([
   //     [7, 6, 3, 2],
-  //     [8, 5, 1, 4],
-  //     [9, 4, 1, 8],
-  //     [10, 3, 2, 4],
+  //     [8, 5, 1, 1],
+  //     [9, 4, 1, 3],
+  //     [10, 3, 2, 1],
   //   ])
   // }
 
@@ -137,7 +139,7 @@ function draw() {
   keyDown = [];
   keyUp = [];
   mouseIsUp = false;
-  movement.set(0, 0)
+  movement.set(0, 0);
 }
 
 
@@ -149,7 +151,7 @@ function keyReleased() {
   keys[keyCode] = false;
   keyUp[keyCode] = true;
 
-  if(keyCode == 27) clearCookies();
+  // if(keyCode == 27) clearCookies();
 }
 
 function mouseClicked() {
@@ -180,7 +182,12 @@ const keepGoing = () => {
   document.getElementById('win-buttons').innerHTML = '';
 }
 
+function goToCredits() {
+  location.href="./credits.html";
+}
+
 function win() {
+  document.getElementById('win-buttons').innerHTML = '<button class="btn" onClick="goToCredits()">Credits</button>';
   // document.getElementById('win-buttons').innerHTML = '<button class="btn" onClick="keepGoing()">Continue</button><button class="btn" onClick="setup()">Restart</button>';
 }
 

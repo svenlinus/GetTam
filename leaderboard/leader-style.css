@@ -1,0 +1,30 @@
+:root {
+  --blue: #1f4ba3;
+  --white: #FFFFFF;
+  --black: #000000;
+}
+
+
+main {
+  width: 900px;
+  margin: 3em auto 3em;
+  font-family: 'Montserrat', sans-serif;
+  border-left: 1px solid #c0b4b4;
+	border-top: 1px solid #6c7999;
+	border-radius: 5px;
+	box-shadow: 5px 5px 3px #6c7999;
+}
+
+#container {
+  padding: 0px 150px 50px;
+}
+
+tr {
+  margin: 20px;
+}
+
+h1 {
+  color: var(--blue);
+  padding: 10px 0px;
+  font-size: 48px;
+}
