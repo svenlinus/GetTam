@@ -65,7 +65,7 @@ p {
 }
 
 .grid-item {
-	width: 610px;
+	width: 620px;
 }
 
 
@@ -78,46 +78,10 @@ div.padder {
 	
 }
 
-/* scores {
-	padding-top: 1%;
-	grid-template-columns: auto auto;
-	grid-template-rows: auto auto;
-	column-gap: 7px;
-	row-gap: 7px;
-	display: inline-grid;
-	float: right;
-	text-align: right;
-}
-
-score {
-	text-align: center;
-	display: inline-block;
-	position: relative;
-	padding: 7px 10px;
-	border-radius: 5px;
-	color: #fff;
-	background: #1c68ba;
-	line-height: 1.3;
-}
-
-div.score-title {
-	color: #cbb9b9;
-	font-size: var(--smallFontSize);
-	font-weight: bold;
-	padding-bottom: 2px;
-}
-
-div.score-entry {
-	font-size: var(--scoreFontSize);
-	font-weight: bold;
-} */
-
-/* .page-title {
-  display: inline-block;
-} */
 
 scores {
-	padding-top: 1%;
+/* 	padding: 1%; */
+  padding: 0.5% 1% 2%;
 	grid-template-columns: auto auto;
 	grid-template-rows: auto auto;
 	column-gap: 7px;
@@ -126,7 +90,15 @@ scores {
 	float: right;
 	text-align: right;
   width: 240px;
+/*   cursor: pointer; */
 }
+
+/* scores:hover,
+scores:focus {
+  box-shadow: 0 0 20px rgba(0, 0, 0, .15);
+} */
+
+
 
 score {
 	text-align: center;
@@ -143,7 +115,7 @@ div.score-title {
 	color: #cbb9b9;
 	font-size: 10pt;/* var(--smallFontSize); */
 	font-weight: bold;
-	padding-bottom: 2px;
+	padding-top: 0px;
 	text-align: left;
 }
 
@@ -175,4 +147,3 @@ div.score-entry {
 	border: 1px solid #98acdd;
 	background: #98acdd;
 }
-

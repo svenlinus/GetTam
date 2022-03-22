@@ -1,15 +1,17 @@
 ### Priority:
-* Leaderboard data -A
-* Leaderboard front end -LF
-* Daily winner -A
-* Medals for daily winner
+* Usernames/gamer tags input -F
+* Integrate usernames into firebase -A
+* Leaderboard navigation -L
 
 ### To do:
-* Retro version (3x3 old school logos) -L
+* Daily winner -A
+* Medals for daily winner
+* Brainstorm
 * List of schools for users to see the order -M
-* Fake GetRedwood for meme
 
 ### Done:
+* Leaderboard data -A
+* Leaderboard front end -L
 * Credits page -C
 * Rotate borad -L
 * Continue after Tam -L

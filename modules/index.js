@@ -49,8 +49,25 @@ export function highScoreEvent() {
     //sortBoard(temp,high,leaderboard);
     var index;
     if(high > temp[temp.length-1].score) {
+      for(var i = 0; i < temp.length; i++) {
+        if(id == temp[i].id && high > temp[i].score) {
+          temp.splice(i, 1);    
+          for(var j = i; j >= 0; j--) {
+            if(temp[j].score > high) {
+              temp.splice(j+1, 0, {name: getCookie('name'), id: id, score: high});
+              break;
+            }
+            else if(j === 0) {
+              temp.splice(0, 0, {name: getCookie('name'), id: id, score: high});
+            }
+          }
+          set(leaderboard,temp);
+          return;
+        } 
+        if(id == temp[i].id && high < temp[i].score) return;
+      }
       for(var i = temp.length-2; i >= 0; i--) {
-        if(id == temp[i].id && high == temp[i].score) return;
+        if(id == temp[i].id) return;
         if(temp[i].score > high) {
           index = i+1;
           break;
@@ -64,7 +81,7 @@ export function highScoreEvent() {
       for(var i = 0; i < temp.length; i++) {
         if(i === index) {
           newBoard.push({
-            name: getCookie('username'),
+            name: getCookie('name'),
             score: high,
             id: getCookie('id')
             });

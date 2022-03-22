@@ -3,6 +3,9 @@ import { getBoard } from "../modules/index.js";
 window.addEventListener("load", loadLeaderboard);
 
 async function loadLeaderboard() {
+  // IFF no username --> dropdown
+  // setCookie( new username ) continue
+  // dispatch event highScoreEvent to refresh leaderboard data
 
   const users = await getBoard();
   console.log(users);
@@ -43,3 +46,34 @@ function getCookie(cname) {
   //   {name: "Jake", score: 20111},
   //   {name: "Nattybumpo", score: 20056},
   // ];
+
+let screen_locked = false;
+
+function dropdown(end_func) {
+  // textSize(40pt);
+  // textWidth("string") --> pixel length
+	// Must be < 25 
+
+	// Set up form
+	screen_locked = true;
+	let form = document.querySelector('#username-form');
+	form.style.display = 'block';
+	docuemnt.getElementById('autofocus').autofocus = true;
+	form.addEventListener("submit", function(event) {
+  		event.preventDefault();
+		document.querySelector('body').innerHTML = form.elements['playername'].value;
+		console.log('lllll');
+		console.log(form.elements['playername'] + 'lll');
+		form.style.display = 'none';
+	}, true);
+}
+
+function submitted(event) {
+	// Check
+	// If not right, send back to user
+	// If so call end_func
+	console.log('lllll');
+	return true;
+}
+
+dropdown();

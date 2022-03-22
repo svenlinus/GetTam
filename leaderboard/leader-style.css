@@ -2,6 +2,14 @@
   --c1: #005998;
   --white: #FFFFFF;
   --black: #000000;
+
+  --formDisplay: none;
+  --formWidth: 50%;
+  --formBottom: 50%;
+  --formLeft: 25%;
+  --formHeight: auto;
+  --formMinWidth: 300px;
+  --formMinHeight: 100px;
 }
 
 
@@ -50,7 +58,7 @@ h1 {
 }
 
 .content tbody tr {
-  border-bottom: 1px solid #ddd;
+/*   border-bottom: 1px solid #ddd; */
   color: #444;
 }
 
@@ -65,4 +73,28 @@ h1 {
 .content tbody tr.active-row {
   font-weight: bold;
   color: var(--c1);
+}
+
+#username-form {
+	display: none;
+	position: fixed;
+	border: 3px solid var(--c1);
+	border-radius: 5px;
+	bottom: var(--formBottom);
+	left: var(--formLeft);
+	background: var(--white);
+	width: var(--formWidth);
+	height: var(--formHeight);
+	min-width: var(--formMinWidth);
+	min-height: var(--formMinHeight);
+	text-align: center;
+	padding: 0px 20px 20px 20px;
+	
+}
+
+.form-group {
+	width: 80%;
+	max-width: 20rem;
+	margin: auto;
+	padding-top: .5rem;
 }

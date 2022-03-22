@@ -190,6 +190,7 @@ function goToCredits() {
 
 function win() {
   document.getElementById('win-buttons').innerHTML = '<button class="btn" onClick="goToCredits()">Credits</button>';
+  document.dispatchEvent(highScore);
   // document.getElementById('win-buttons').innerHTML = '<button class="btn" onClick="keepGoing()">Continue</button><button class="btn" onClick="setup()">Restart</button>';
 }
 
