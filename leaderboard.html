@@ -4,6 +4,7 @@
         <link rel="stylesheet" type="text/css" href="leaderboard/leader-style.css">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src='leaderboard/cookies.js'></script>
         <script type="module" src="leaderboard/leaderboard.js"></script>
         <script type="module" src='modules/index.js'></script>
 		<!-- Bootstrap -->
@@ -33,9 +34,11 @@
         </tbody>
 		</table>
     </div>
-	  <form id="username-form">
-			<h1>Player name</h1>
-		  	<p>This is what will be displayed on the leaderboard if you make it.</p>
+	
+  </main>
+	<form id="username-form">
+			<h1>Player Name Required</h1>
+		  	<p>Please enter you name to continue</p>
 		  	<div class="form-group">
             	<input id='autofocus' autocomplete="off" class="form-control" name="playername" placeholder="playername" type="text" autofocus required>
         	</div>
@@ -43,5 +46,5 @@
 				<button class="btn btn-primary" type='submit'>Set Name</button>
 			</div>
 	</form>
-  </main>
+	<div class='color-overlay'></div>
 </body>

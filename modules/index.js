@@ -3,7 +3,20 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.8/firebase-app.js";
 import { getDatabase, ref, set, child, update, remove, push, get } from "https://www.gstatic.com/firebasejs/9.6.8/firebase-database.js";
 
-export function newGame() {
+let id;
+
+
+export async function newGame() {
+  id = getCookie('id');
+  
+  var pathlist = await get(child(reference, 'blacklist'));
+  var list = pathlist.val();
+  for(var i = 0; i < list.length; i++) {
+    if(list[i] === id) {
+      window.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
+    }
+  }
+  
   var games = get(child(reference, 'TotalGamesPlayed')).then((snapshot) => {
     var temp = snapshot.val();
     set(game, temp+1);
@@ -14,35 +27,16 @@ export function newGame() {
     set(logs, temp+1);
   });
   
-
-  let id = getCookie('id');
+  // let id = getCookie('id');
   if(id == '') {
     setCookie('id', createID(), 365);
   }
-  // var path = 'PlayerData/' + getCookie('id');
-  // var gamesPlayed = ref(database, path);
-
-  // var data = get(reference,path).then((snapshot)=> {
-  //   var temp = snapshot.val();
-   
-  //   console.log(snapshot.val().PlayerData);
-  //   var tempRef = ref(database,path);
-  //   if(temp === null) {
-  //     set(tempRef,1);
-  //   }
-  //   else {
-  //     set(tempRef, temp+1);
-  //   }
-  // });
-  
-  //child(reference, path)
 }
 
 export function highScoreEvent() {
   
   var board = get(child(reference, 'Leaderboard')).then((snapshot) => {
     var temp = snapshot.val();
-  
     var high = parseInt(getCookie("maxScore"));
     var id = getCookie("id");
 
@@ -61,7 +55,7 @@ export function highScoreEvent() {
               temp.splice(0, 0, {name: getCookie('name'), id: id, score: high});
             }
           }
-          set(leaderboard,temp);
+          set(leaderboard, temp);
           return;
         } 
         if(id == temp[i].id && high < temp[i].score) return;
@@ -95,6 +89,22 @@ export function highScoreEvent() {
   });
 }
 
+//export async function 
+
+export async function updateName() {
+  var bruhBoard = await getBoard();
+  var id = getCookie("id");
+  console.log(bruhBoard);
+  console.log(id);
+  for(var i = 0; i < bruhBoard.length; i++) {
+    highScoreEvent();
+    if(bruhBoard[i].id === id) {
+      bruhBoard[i].name = getCookie('name');
+      set(leaderboard, bruhBoard);
+    }
+  }
+  await getBoard();
+}
 
 
 export async function getBoard() {
@@ -111,12 +121,20 @@ function checkDailyBoard() {
 
 export function resetBoard() {
   var b = [];
-  for(var i = 0; i < 10; i++) {
-    b.push({name: 'Brah', score: 0, id: 'aaa000'});
+  for(var i = 0; i < 20; i++) {
+    b.push({name: '', score: 0, id: 'aaa000'});
   }
   set(leaderboard, b);
 }
 
+
+export async function blacklistUser() {
+  var pathlist = await get(child(reference, 'blacklist'));
+  var list = pathlist.val();
+  list.push(getCookie('id'));
+  set(blacklist, list);
+  clearCookies();
+}
 
 
 export function printBruh() {
@@ -144,7 +162,6 @@ var month = date.getMonth().toString();
 var day = date.getDate().toString();
 var dat = month + '-' + day;
 
-var logs = ref(database, dat);
 
   // var breh = get(child(reference, dat)).then((snapshot)=> {
   //   var temp = snapshot.val();
@@ -152,8 +169,18 @@ var logs = ref(database, dat);
   // });
 //push(logs,1);
 
-var game = ref(database, 'TotalGamesPlayed');
+var playPath = 'TotalGamesPlayed';
+var bruhDate = dat;
+if(window.location.href.includes('repl')) {
+  playPath = 'testingGamesPlayed';
+  bruhDate = dat + '-testing';
+}
+
+var logs = ref(database, bruhDate);
+
+var game = ref(database, playPath);
 var leaderboard = ref(database, 'Leaderboard');
+var blacklist = ref(database, 'Blacklist');
 var dailyBoard = ref(database, dat + '-Leaderboard');
 
 let letters = ['a','b','c','d','e','f','g','h','i','j','k','l','m', 'n', 'o', 'p', 'q','r','s','t','u','v','w','x','y','z'];
@@ -163,8 +190,17 @@ let letters = ['a','b','c','d','e','f','g','h','i','j','k','l','m', 'n', 'o', 'p
 //   setCookie('id',createID(),365);
 // }
 
+// let bruhID = getCookie('id');
+// var pathlist = await get(child(reference, 'blacklist'));
+// var list = pathlist.val();
+// for(var i = 0; i < list.length; i++) {
+//   if(list[i] === bruhID) {
+//     window.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
+//   }
+// }
 
-
+// var pathlist = ref(database,'blacklist');
+// set(pathlist,[bruhID]);
 
 
 

@@ -7,7 +7,7 @@ let bestSchool = 1;
 let lost = false;
 
 let maxVal = 11;
-let tamCoords = {i:0, j:0};
+let winCoords = {i:0, j:0};
 
 class Board {
   constructor(w, h) {
@@ -257,7 +257,7 @@ class Tile {
         hawkSound.play();
         hasWon(true);
         win();
-        tamCoords = {i:this.i, j:this.j, tile:this};
+        winCoords = {i:this.i, j:this.j, tile:this};
       }
       won = true;
       this.i = 1.5;

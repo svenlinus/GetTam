@@ -2,6 +2,8 @@
 * Usernames/gamer tags input -F
 * Integrate usernames into firebase -A
 * Leaderboard navigation -L
+* Devise a way to ban devices -A
+* Anti-cheat and ban message -L
 
 ### To do:
 * Daily winner -A

@@ -29,8 +29,9 @@ let numbers = false;
 let cnv, board, cam, dcam, cyp;
 let restartButton;
 let icons = [];
-let hawk;
+let hawk, indicateBoard;
 let pastWinner = false;
+let showIndicator = true;
 
 let won = false;
 
@@ -48,6 +49,7 @@ function preload() {
     loadImage("images/branson.png"),
     loadImage("images/tam.png"),
     loadImage("images/last.png"),
+    loadImage("images/outside.png")
   ];
 
   hawkSound = loadSound("sounds/hawk.mp3");
@@ -63,18 +65,30 @@ function hawkIcon() {
   return img;
 }
 
+function indicate() {
+  let p = createP("Click on your score to see the new Leaderborad! -->")
+  p.style('color', '#1f4ba3');
+  p.style('font-weight', 'bold');
+  p.id("indicate");
+  p.position(200, 60);
+  return p;
+}
+
 
 function setup() {
   document.getElementById('win-buttons').innerHTML = '';
   document.dispatchEvent(start);
   document.dispatchEvent(highScore);
   
-  
+  showIndicator = !getCookie("name");
   if(hasWon() || getCookie("maxSchool") == 10) {
     hasWon(true);
     hawk = hawkIcon();
     pastWinner = true;
   }
+  if(showIndicator) {
+    indicateBoard = indicate();
+  } 
   won = false;
   lost = false;
   continued = false;
@@ -103,6 +117,9 @@ function setup() {
 
 function draw() {
   if(pastWinner) hawk.position(windowWidth/2 + 310, 75);
+  if(showIndicator) indicateBoard.position(windowWidth/2 - 420 + sin(frameCount*0.1)*10, 65);
+  else if(indicateBoard) indicateBoard.html("");
+  
   push();
   translate(8-cam.x, 8-cam.y);
   background(225);
@@ -130,10 +147,10 @@ function draw() {
   }
   // if(keys[16] && keyUp[192]) {
   //   customTiles([
-  //     [7, 6, 3, 2],
-  //     [8, 5, 1, 1],
-  //     [9, 4, 1, 3],
-  //     [10, 3, 2, 1],
+  //     [7, 6, 8, 8],
+  //     [9, 5, 8, 8],
+  //     [9, 10, 9, 9],
+  //     [10, 10, 10, 10],
   //   ])
   // }
 
@@ -158,6 +175,7 @@ function keyReleased() {
 
 function mouseClicked() {
   mouseIsUp = true;
+  showIndicator = false;
 }
 
 
@@ -177,10 +195,10 @@ function customTiles(tiles) {
 
 
 const keepGoing = () => {
-  maxVal = 12; 
+  maxVal ++;
   won = false;
-  tamCoords.tile.i = tamCoords.i;
-  tamCoords.tile.j = tamCoords.j;
+  winCoords.tile.i = winCoords.i;
+  winCoords.tile.j = winCoords.j;
   document.getElementById('win-buttons').innerHTML = '';
 }
 
@@ -191,7 +209,7 @@ function goToCredits() {
 function win() {
   document.getElementById('win-buttons').innerHTML = '<button class="btn" onClick="goToCredits()">Credits</button>';
   document.dispatchEvent(highScore);
-  // document.getElementById('win-buttons').innerHTML = '<button class="btn" onClick="keepGoing()">Continue</button><button class="btn" onClick="setup()">Restart</button>';
+  document.getElementById('win-buttons').innerHTML = '<button class="btn" onClick="keepGoing()">Continue</button><button class="btn" onClick="goToCredits()">Credits</button>';
 }
 
 function lose() {

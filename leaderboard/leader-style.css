@@ -5,7 +5,7 @@
 
   --formDisplay: none;
   --formWidth: 50%;
-  --formBottom: 50%;
+  --formBottom: 40%;
   --formLeft: 25%;
   --formHeight: auto;
   --formMinWidth: 300px;
@@ -76,10 +76,9 @@ h1 {
 }
 
 #username-form {
-	display: none;
+	display: var(--formDisplay);
 	position: fixed;
-	border: 3px solid var(--c1);
-	border-radius: 5px;
+	border-radius: 20px;
 	bottom: var(--formBottom);
 	left: var(--formLeft);
 	background: var(--white);
@@ -88,8 +87,8 @@ h1 {
 	min-width: var(--formMinWidth);
 	min-height: var(--formMinHeight);
 	text-align: center;
-	padding: 0px 20px 20px 20px;
-	
+	padding: 30px 20px 50px 20px;
+	z-index: 1
 }
 
 .form-group {
@@ -97,4 +96,18 @@ h1 {
 	max-width: 20rem;
 	margin: auto;
 	padding-top: .5rem;
+}
+
+.color-overlay {
+	opacity: .7;
+	background: #000;
+	position: fixed;
+	display: var(--formDisplay);
+	width: 100%;
+	height: 100%;
+}
+
+body {
+	possition: relative;
+	display: flex;
 }

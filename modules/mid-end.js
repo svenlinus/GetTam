@@ -1,9 +1,12 @@
-import {newGame, printBruh, highScoreEvent, resetBoard} from './index.js';
+import {newGame, printBruh, highScoreEvent, resetBoard, blacklistUser } from './index.js';
 
 
 document.addEventListener("start", newGame );
 
-document.addEventListener("highScore", highScoreEvent );
+document.addEventListener("highScore", () => {
+  if(!getCookie('name')) return;
+  highScoreEvent();
+});
 
 document.addEventListener("resetBoard", resetBoard );
   
