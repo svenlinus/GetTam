@@ -47,7 +47,7 @@ function preload() {
     loadImage("images/sr.jpg"),
     loadImage("images/branson.png"),
     loadImage("images/tam.png"),
-//     loadImage("images/last.png"),
+    loadImage("images/last.png"),
   ];
 
   hawkSound = loadSound("sounds/hawk.mp3");
@@ -204,7 +204,6 @@ function lose() {
 //   let pl = (windowWidth-width)/2
 //   cnv.position(pl, pt);
 // }
-
 
 
 
