@@ -2,8 +2,10 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.8/firebase-app.js";
 import { getDatabase, ref, set, child, update, remove, push, get } from "https://www.gstatic.com/firebasejs/9.6.8/firebase-database.js";
+import { getAuth, onAuthStateChanged, signInAnonymously } from "https://www.gstatic.com/firebasejs/9.6.8/firebase-auth.js";
 
 let id;
+let uid;
 
 
 export async function newGame() {
@@ -31,6 +33,8 @@ export async function newGame() {
   if(id == '') {
     setCookie('id', createID(), 365);
   }
+
+  
 }
 
 export function highScoreEvent() {
@@ -119,6 +123,13 @@ function checkDailyBoard() {
   });
 }
 
+export async function addBlacklist(name) {
+  var list = await get(child(reference,'Blacklist'));
+  var list = list.val();
+  list.push(name);
+  set(blacklist,list);
+}
+
 export function resetBoard() {
   var b = [];
   for(var i = 0; i < 20; i++) {
@@ -127,14 +138,6 @@ export function resetBoard() {
   set(leaderboard, b);
 }
 
-
-export async function blacklistUser() {
-  var pathlist = await get(child(reference, 'blacklist'));
-  var list = pathlist.val();
-  list.push(getCookie('id'));
-  set(blacklist, list);
-  clearCookies();
-}
 
 
 export function printBruh() {
@@ -156,6 +159,18 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 var database = getDatabase(app);
 var reference = ref(database);
+
+
+const auth = getAuth(app);
+signInAnonymously(auth);
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    uid = user.uid;
+    console.log(uid);
+  } else {
+    console.log(auth.currentUser);
+  }
+});
 
 var date = new Date();
 var month = date.getMonth().toString();
@@ -180,7 +195,7 @@ var logs = ref(database, bruhDate);
 
 var game = ref(database, playPath);
 var leaderboard = ref(database, 'Leaderboard');
-var blacklist = ref(database, 'Blacklist');
+// var blacklist = ref(database, 'Blacklist');
 var dailyBoard = ref(database, dat + '-Leaderboard');
 
 let letters = ['a','b','c','d','e','f','g','h','i','j','k','l','m', 'n', 'o', 'p', 'q','r','s','t','u','v','w','x','y','z'];

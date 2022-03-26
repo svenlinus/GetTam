@@ -49,6 +49,7 @@ class Board {
     if(won) return;
     this.isFull();
     if(this.gameOver()) {
+      document.dispatchEvent(highScore);
       lost = true;
       return;
     }

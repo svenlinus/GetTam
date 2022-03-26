@@ -1,4 +1,4 @@
-import {newGame, printBruh, highScoreEvent, resetBoard, blacklistUser } from './index.js';
+import {newGame, printBruh, highScoreEvent, resetBoard } from './index.js';
 
 
 document.addEventListener("start", newGame );
