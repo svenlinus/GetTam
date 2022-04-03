@@ -42,7 +42,8 @@ function update_fonts() {
 // Will update high score too and manage
 // High score.
 function update_score(current_score) {
-	max_score_string = getCookie('maxScore')
+  if(current_score > 0 && !check(current_score)) return;
+	let max_score_string = getCookie('maxScore')
 	let max_score = parseInt(max_score_string);
 	if (max_score_string == ''
 		|| max_score < current_score) {
@@ -52,7 +53,13 @@ function update_score(current_score) {
 	}
 	document.getElementById('score-holder').innerHTML = current_score;
 	document.getElementById('max-score-holder').innerHTML = max_score;
-  setCookie('lastScore', current_score,1);
+  // console.log(current_score > board.maxScore());
+  // if(current_score > board.maxScore()) {
+  //   console.log(current_score-pscore);
+  //   console.log(keyCode);
+  //   table(board.rows);
+  //   noLoop();
+  // }
   //document.dispatchEvent(highScore);
 }
 
@@ -106,6 +113,9 @@ function hasWon(won) {
 
 // Cookie manipulation functions copy and pasted from W3Schools
 function setCookie(cname, cvalue, exdays) {
+  if(cname == "maxScore" && cvalue > 0) {
+    if(!check(cvalue)) return;
+  }
   const d = new Date();
   d.setTime(d.getTime() + (exdays*24*60*60*1000));
   let expires = "expires="+ d.toUTCString();
@@ -115,7 +125,7 @@ function getCookie(cname) {
   let name = cname + "=";
   let decodedCookie = decodeURIComponent(document.cookie);
   let ca = decodedCookie.split(';');
-  for(let i = 0; i <ca.length; i++) {
+  for(let i = 0; i < ca.length; i++) {
     let c = ca[i];
     while (c.charAt(0) == ' ') {
       c = c.substring(1);
@@ -125,4 +135,12 @@ function getCookie(cname) {
     }
   }
   return "";
+}
+
+function check(val) {
+  if(!started || val%4 != 0 || !checkUpdate() || val > board.maxScore()) {
+    document.dispatchEvent(rick);
+    return false;
+  }
+  return true;
 }

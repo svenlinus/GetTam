@@ -1,4 +1,4 @@
-import { getBoard, printBruh, highScoreEvent, updateName } from "../modules/index.js";
+import { getBoard, highScoreEvent, updateName } from "../modules/index.js";
 
 window.addEventListener("load", loadLeaderboard);
 
@@ -64,8 +64,16 @@ function validation(name) {
 	if (name.length > 20) {
 		alert('Must be less than 20 characters.');
 		return false;
+	} else if (!containsAnyLetter(name)) {
+		alert('Must contain at least one letter.');
+		return false;
 	}
 	return true;
+}
+
+function containsAnyLetter(str) {
+  // 👇️ using the `i` flag
+  return /[a-z]/i.test(str);
 }
 
 function preventScroll(e){

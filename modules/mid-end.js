@@ -1,4 +1,4 @@
-import {newGame, printBruh, highScoreEvent, resetBoard } from './index.js';
+import {newGame, highScoreEvent, resetBoard, addBlacklist } from './index.js';
 
 
 document.addEventListener("start", newGame );
@@ -10,3 +10,6 @@ document.addEventListener("highScore", () => {
 
 document.addEventListener("resetBoard", resetBoard );
   
+document.addEventListener("roll", async () => {
+  await addBlacklist(getCookie('id'));
+});

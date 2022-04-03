@@ -15,12 +15,14 @@
 const start = new Event("start");
 const highScore = new Event("highScore");
 const reset = new Event("resetBoard");
-
+const rick = new Event("roll");
 
 const keys = [];
 let keyDown = [];
 let keyUp = [];
 let mouseIsUp = false;
+
+let states = new Array(5);
 
 let movement;
 
@@ -34,6 +36,11 @@ let pastWinner = false;
 let showIndicator = true;
 
 let won = false;
+let pscore = 0;
+let dscore = 0;
+let started = false;
+let bruh = false;
+
 
 function preload() {
   icons = [
@@ -66,7 +73,7 @@ function hawkIcon() {
 }
 
 function indicate() {
-  let p = createP("Click on your score to see the new Leaderborad! -->")
+  let p = createP("Click on your score to see the new Leaderboard! -->")
   p.style('color', '#1f4ba3');
   p.style('font-weight', 'bold');
   p.id("indicate");
@@ -78,7 +85,7 @@ function indicate() {
 function setup() {
   document.getElementById('win-buttons').innerHTML = '';
   document.dispatchEvent(start);
-  document.dispatchEvent(highScore);
+  // document.dispatchEvent(highScore);
   
   showIndicator = !getCookie("name");
   if(hasWon() || getCookie("maxSchool") == 10) {
@@ -92,23 +99,25 @@ function setup() {
   won = false;
   lost = false;
   continued = false;
+  
   cnv = createCanvas(616, 616);
 	// Tie canvas to a div
+  document.getElementById("board").innerHTML = "";
 	cnv.parent("board");
   
   score = 0;
   bestSchool = 0;
   Screen.reset();
 
-  update_score(0);
-  update_school(0);
   
   board = new Board(4, 4);
   movement = createVector(0, 0);
   cam = createVector(0, 0);
   dcam = createVector(0, 0);
   restartButton = new Button("Restart", width/2, height/2, setup);
-  
+
+  update_score(0);
+  update_school(0);
   addSwipe();
   
   background(255); 
@@ -116,6 +125,8 @@ function setup() {
 
 
 function draw() {
+  pscore = score;
+  started = true;
   if(pastWinner) hawk.position(windowWidth/2 + 310, 75);
   if(showIndicator) indicateBoard.position(windowWidth/2 - 420 + sin(frameCount*0.1)*10, 65);
   else if(indicateBoard) indicateBoard.html("");
@@ -131,8 +142,11 @@ function draw() {
   
   board.display();
   pop();
-
   
+  dscore = score-pscore;
+  if(dscore > 10000) {
+    document.dispatchEvent(rick);
+  }
   if(lost) lose();
 
   const k = 0.1, damp = 0.1;
@@ -145,20 +159,12 @@ function draw() {
     board.rotate();
     movement.set(0, 0);
   }
-  // if(keys[16] && keyUp[192]) {
-  //   customTiles([
-  //     [7, 6, 8, 8],
-  //     [9, 5, 8, 8],
-  //     [9, 10, 9, 9],
-  //     [10, 10, 10, 10],
-  //   ])
-  // }
-
   
   keyDown = [];
   keyUp = [];
   mouseIsUp = false;
   movement.set(0, 0);
+  bruh = false;
 }
 
 
@@ -187,11 +193,11 @@ function clearCookies() {
 }
 
 
-function customTiles(tiles) {
-  forEach2D(tiles, (t, i, j) => {
-    board.tiles[j][i] = t > 0 ? new Tile(j, i, t): 0;
-  });
-}
+// function customTiles(tiles) {
+//   forEach2D(tiles, (t, i, j) => {
+//     board.tiles[j][i] = t > 0 ? new Tile(j, i, t): 0;
+//   });
+// }
 
 
 const keepGoing = () => {
@@ -214,6 +220,11 @@ function win() {
 
 function lose() {
   Screen.fade();
+}
+
+function parr(arr) {  // print array
+  for(let e of arr)
+    print(e);
 }
 
 

@@ -49,17 +49,27 @@ class Board {
     if(won) return;
     this.isFull();
     if(this.gameOver()) {
-      document.dispatchEvent(highScore);
+      if(!lost) document.dispatchEvent(highScore);
       lost = true;
       return;
     }
+    
       
     if(movement.y < 0) this.moveUp();
-    if(movement.y > 0) this.moveDown();
-    if(movement.x < 0) this.moveLeft();
-    if(movement.x > 0) this.moveRight();
+    else if(movement.y > 0) this.moveDown();
+    else if(movement.x < 0) this.moveLeft();
+    else if(movement.x > 0) this.moveRight();
+
+    // let dir = "";
+    // if(movement.y < 0) dir = "up";
+    // if(movement.y > 0) dir = "down";
+    // if(movement.x < 0) dir = "left";
+    // if(movement.x > 0) dir = "right";
 
     if(abs(movement.x) + abs(movement.y) > 0) {
+      // states.shift();
+      // states.push(table(this.rows, "val", true) + dir);
+      bruh = true;
       update_score(score);
       if(!this.full && this.moved) this.addTile();
     }
@@ -124,6 +134,15 @@ class Board {
       y = floor(random(this.height));
     }
     this.tiles[x][y] = new Tile(x, y, odds() );
+  }
+
+  maxScore() {
+    let sum = 0;
+    forEach2D(this.tiles, (tile, i, j) => {
+      const n = tile.val;
+      if(tile.val) sum += (n-1)*pow(2, n);
+    });
+    return sum;
   }
 
   moveDown() {
@@ -445,6 +464,7 @@ function forEach2D(arr, f) {
   }
 }
 
+
 function reverseI(arr, update) {
   const newArr = [];
   const w = arr.length-1;
@@ -474,14 +494,17 @@ function transpose(arr, update) {
   return newArr;
 }
 
-function table(arr, prop) {
+function table(arr, prop, ret) {
+  let out = "";
   prop = prop || "val";
   for(let i = 0; i < arr.length; i ++) {
     let msg = "";
     for(let j = 0; j < arr[i].length; j ++)
       msg += arr[i][j] ? arr[i][j][prop] + " " : "0 ";
-    print("[ " + msg + "]");
+    if(!ret) print("[ " + msg + "]");
+    else out += "[ " + msg + "]\n";
   }
+  if(ret) return out;
 }
 
 
