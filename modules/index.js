@@ -31,6 +31,7 @@ export async function newGame() {
   for(var i = 0; i < list.length; i++) {
     if(list[i] === id) {
       window.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
+      
       return;
     }
   }
@@ -54,7 +55,6 @@ export async function newGame() {
 }
 
 export function highScoreEvent() {
-  console.log("running hse")
   var high = parseInt(getCookie("maxScore"));
   var id = getCookie("id");
 
@@ -200,7 +200,7 @@ var reference = ref(database);
 var loadedID = false;
 
 const auth = getAuth(app);
-// signInAnonymously(auth);
+signInAnonymously(auth);
 onAuthStateChanged(auth, (user) => {
   if (user) {
     uid = user.uid;
