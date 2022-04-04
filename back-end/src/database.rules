@@ -1,0 +1,31 @@
+{
+    "rules": {
+        "$other": {
+            ".validate": false
+        },
+        "TotalGamesPlayed": {
+            ".read": true,
+            ".write": "newData.exists() && newData.isNumber() && newData.val() > 0 && newData.val() == data.val() + 1",
+        },
+        "testingGamesPlayed": {
+            ".read": true,
+            ".write": "newData.exists() && newData.isNumber() && newData.val() > 0 && newData.val() == data.val() + 1",
+        },
+        "blacklist": {
+            ".read": true,
+            ".write": "newData.exists() && newData.val().length > 0 && newData.val().length == data.val().length + 1",
+            "$other": {
+                ".read": true,
+                ".write": "newData.exists() && newData.isString() && newData.val().length > 0",
+            }
+        },
+        "Leaderboard": {
+            ".read": true,
+            ".write": "newData.exists() && newData.val().length >= data.val().length",
+            "$other": {
+                ".read": true,
+                ".write": "newData.exists() && newData.isNumber() && newData.val() > 0",
+            }
+        }
+    }
+}
