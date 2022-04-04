@@ -16,13 +16,15 @@ export async function newGame() {
     var temp = snapshot.val();
     console.log(temp);
     for(let i = 0; i < temp.length; i ++) {
-      const name = temp[i] ? temp[i].name.replace(" ", "") : false;
-      if(!name) {
+      const name = temp[i] ? temp[i].name : false;
+      if(!name || name == "" || name == " ") {
         temp.splice(i, 1);
         temp.push({name: '', score: 0, id: 'bru000'});
       }
     }
-    
+    // for(let i = 0; i < 15; i ++) {
+      // temp.push({name: '', score: 0, id: 'aaa000'});
+    // }
     set(leaderboard, temp);
   });
   
