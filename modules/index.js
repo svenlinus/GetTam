@@ -19,7 +19,7 @@ export async function newGame() {
       const name = temp[i] ? temp[i].name : false;
       if(!name || name == "" || name == " ") {
         temp.splice(i, 1);
-        temp.push({name: '', score: 0, id: 'bru000'});
+        temp.push({name: '', score: 0, id: 'aaa000'});
       }
     }
     // for(let i = 0; i < 15; i ++) {

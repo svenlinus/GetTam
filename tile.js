@@ -307,7 +307,7 @@ class Tile {
     const val = this.displayVal;
     imageMode(CENTER);
     
-    if(!numbers) {
+    if(!numbers && icons[this.displayVal-1]) {
       image(icons[this.displayVal-1], 0, 0, size-16, size-16);
       return;
     }

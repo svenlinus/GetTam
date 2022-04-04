@@ -99,6 +99,7 @@ function setup() {
   won = false;
   lost = false;
   continued = false;
+  maxVal = 11;
   
   cnv = createCanvas(616, 616);
 	// Tie canvas to a div

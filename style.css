@@ -17,12 +17,6 @@ html, body {
   background-color: #ffffff
 }
 
-
-#win-buttons {
-  padding-top: 25px;
-}
-
-
 a {
   color: #1f4ba3;
   font-weight: bold;
@@ -70,12 +64,8 @@ p {
 
 
 div.borders {
-	
 	border-top: 1px solid #c0b4b4;
-}
-
-div.padder {
-	
+/*   margin-left: 0; */
 }
 
 
@@ -137,9 +127,10 @@ div.score-entry {
 }
 
 .avatar {
-  	border-radius: 10%;
-  	width: auto;
-  	height: 7rem;
+	border-radius: 0;
+  width: auto;
+	height: 9rem;
+  box-shadow: 8px 8px 20px rgba(0, 0, 0, .30);
 }
 
 .officer-data {
@@ -148,19 +139,30 @@ div.score-entry {
 }
 
 .btn {
-  margin: 0px 10px;
+  margin: 0px 8px;
 	font-size: 20pt;
-	padding: 5px 10px;
+	padding: 3px 14px 1px;
 	color: #fff;
 	background: #307dcf;
 	border: 1px solid #307dcf;
 }
 .btn:hover {
-	background: #307dcf;
+	background: #173c63;
 	border: 1px solid #173c63;
+  color: #fff;
 }
 
 .btn:focus {
 	border: 1px solid #98acdd;
 	background: #98acdd;
+  color: #fff
+}
+
+
+#win-buttons {
+  padding-top: 10px;
+}
+#win-buttons.button {
+  color: #000;
+  border-radius: 0;
 }
