@@ -22,8 +22,8 @@ export async function newGame() {
         temp.push({name: '', score: 0, id: 'aaa000'});
       }
     }
-    // for(let i = 0; i < 15; i ++) {
-      // temp.push({name: '', score: 0, id: 'aaa000'});
+    // for(let i = 0; i < 50; i ++) {
+    //     temp.push({name: '', score: 0, id: 'aaa000'});
     // }
     set(leaderboard, temp);
   });
