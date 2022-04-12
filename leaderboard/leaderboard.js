@@ -17,7 +17,7 @@ async function loadLeaderboard(b) {
   
   table.innerHTML = ""
   
-  for (let i = 0; i < 50; i++){
+  for (let i = 0; i < 100; i++){
     let htmlclass = "";
     if(users[i].id == id) htmlclass = " class='active-row'";
     const displayName = users[i].name; // || users[i].id;
