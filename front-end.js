@@ -1,5 +1,8 @@
 document.addEventListener('DOMContentLoaded', function () {
 	update_fonts();
+	let r = document.querySelector(':root');
+  if(getCookie('id') == "ucj285" || getCookie('name') == "carson")
+    r.style.setProperty('--popDisplay', 'block');
 })
 
 let mobile = false;
