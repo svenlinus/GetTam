@@ -17,7 +17,7 @@ async function loadLeaderboard(b) {
 
   table.innerHTML = ""
 
-  for (let i = 0; i < 150; i++) {
+  for (let i = 0; i < 200; i++) {
     let htmlclass = "";
     if (users[i].id == id) htmlclass = " class='active-row'";
     const displayName = users[i].name; // || users[i].id;
@@ -45,7 +45,8 @@ function dropdown(end_func) {
   document.querySelector('body').addEventListener('wheel', preventScroll, { passive: false });
   form.addEventListener("submit", function(event) {
     event.preventDefault();
-    let name = form.elements['playername'].value;
+    let name = form.elements['playername'].value.trim();
+    
     if (validation(name)) {
       form.style.display = 'none';
       screen_locked = false;
@@ -60,10 +61,13 @@ function dropdown(end_func) {
 
 function validation(name) {
   if (name.length > 20) {
-    alert('Must be less than 20 characters.');
+    alert('Name must be less than 20 characters.');
     return false;
-  } else if (!containsAnyLetter(name)) {
-    alert('Must contain at least one letter.');
+  } if (name.length < 3) {
+    alert('Name must be at least 3 characters');
+    return false;
+  } if (!containsAnyLetter(name)) {
+    alert('Name must contain at least one letter.');
     return false;
   }
   return true;

@@ -11,20 +11,21 @@ let uid;
 
 export async function newGame() {
   id = getCookie('id');
+  
+  if(getCookie('name') != "" && getCookie('name').length < 3) setCookie('name', '', 0);
 
   get(child(reference, 'Leaderboard')).then((snapshot) => {
     var temp = snapshot.val();
-    console.log(temp);
     for(let i = 0; i < temp.length; i ++) {
       const name = temp[i] ? temp[i].name : false;
-      if(!name || name == "" || name == " ") {
+      if(!name || name == "" || name == " " || temp[i].name.length < 3 || temp[i].name.length > 20) {
         temp.splice(i, 1);
         temp.push({name: '', score: 0, id: 'aaa000'});
       }
     }
     // for(let i = 0; i < 50; i ++) {
     //     temp.push({name: '', score: 0, id: 'aaa000'});
-    // }
+    //}
     set(leaderboard, temp);
   });
   
@@ -44,16 +45,20 @@ export async function newGame() {
   });
 
   var breh = get(child(reference, dat)).then((snapshot) => {
+    if(window.location.href.includes('repl')) return;
     var temp = snapshot.val();
     set(logs, temp+1);
   });
   
-  // let id = getCookie('id');
   if(id == '') {
     setCookie('id', createID(), 365);
   }
 
   highScoreEvent();
+}
+
+function hourData() {
+  
 }
 
 export function highScoreEvent() {
@@ -128,7 +133,7 @@ export function highScoreEvent() {
 export async function updateName() {
   var bruhBoard = await getBoard();
   var id = getCookie("id");
-  console.log(bruhBoard);
+  
   console.log(id);
   for(var i = 0; i < bruhBoard.length; i++) {
     highScoreEvent();
@@ -222,12 +227,13 @@ var dat = month + '-' + day;
 
 var playPath = 'TotalGamesPlayed';
 var bruhDate = dat;
-if(window.location.href.includes('repl')) {
-  playPath = 'testingGamesPlayed';
-  bruhDate = dat + '-testing';
-}
+// if(window.location.href.includes('repl')) {
+//   playPath = 'testingGamesPlayed';
+//   bruhDate = dat + '-testing';
+// }
 
 var logs = ref(database, bruhDate);
+var hourLog = ref(database, bruhDate + " hours");
 
 var game = ref(database, playPath);
 var leaderboard = ref(database, 'Leaderboard');
