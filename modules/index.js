@@ -13,7 +13,14 @@ export async function newGame() {
   id = getCookie('id');
   
   if(getCookie('name') != "" && getCookie('name').length < 3) setCookie('name', '', 0);
-
+  get(child(reference, 'test')).then((snapshot) => {
+    const temp = snapshot.val();
+    let count = 0;
+    for(let k of Object.keys(temp)) {
+      if(temp[k].name) count ++;
+    }
+    print("Total Users: " + count);
+  });
   get(child(reference, 'Leaderboard')).then((snapshot) => {
     var temp = snapshot.val();
     for(let i = 0; i < temp.length; i ++) {
@@ -25,7 +32,7 @@ export async function newGame() {
     }
     // for(let i = 0; i < 50; i ++) {
     //     temp.push({name: '', score: 0, id: 'aaa000'});
-    //}
+    // }
     set(leaderboard, temp);
   });
   
@@ -57,9 +64,6 @@ export async function newGame() {
   highScoreEvent();
 }
 
-function hourData() {
-  
-}
 
 export function highScoreEvent() {
   var high = parseInt(getCookie("maxScore"));
@@ -177,6 +181,8 @@ export async function removePlayer(index) {
 }
 
 
+
+
 export function resetBoard() {
   var b = [];
   for(var i = 0; i < 20; i++) {
@@ -205,6 +211,8 @@ var database = getDatabase(app);
 var reference = ref(database);
 
 var loadedID = false;
+
+
 
 const auth = getAuth(app);
 signInAnonymously(auth);
