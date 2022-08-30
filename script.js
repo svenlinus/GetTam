@@ -154,8 +154,10 @@ function draw() {
   dcam.x -= (cam.x)*k + dcam.x*damp;  // spring equation
   dcam.y -= (cam.y)*k + dcam.y*damp;
   cam.add(dcam);
-  
-  if(keyUp[32]) setup();
+
+  // Removed space reset due to popular request
+  // if(keyUp[32]) setup();
+	
   if(keyUp[82] && !lost && !won) {
     board.rotate();
     movement.set(0, 0);

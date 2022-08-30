@@ -1,127 +1,140 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
-  <head> <!--Foster will it work on lnakmann.github.io? -->
-	  <!-- It will copy the link the page is served from. In front-end.js there is a variable link that gets this.  --> 
-	  <!-- I have made https://gettam.bib04.repl.co/ex/ex.html do something like the picture you sent me.  -->
-	  <!-- Do you want me to work on replacing the leaderboard? I can come up with a format that displays the information. -->
-	  <!-- bootstrap -->
-	  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    
-	  <script type="module" src='modules/index.js'></script>
-    <script type='module' src='modules/mid-end.js'></script>
-    
-    <link rel="icon" type="image/png" href="images/tam.png">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/9.6.8/firebase-app.js"></script>
-    
-<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/addons/p5.sound.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="style.css">
-	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	  <script src="front-end.js"></script>
-	  <script src="notify.js"></script>
-	  <script src="gui.js"></script>
-    <script src="gesture.js"></script>
-    <script src="tile.js"></script>
-    <script src="script.js"></script>
-    
-	  <title>
+
+<head>
+	<!--Foster will it work on lnakmann.github.io? -->
+	<!-- It will copy the link the page is served from. In front-end.js there is a variable link that gets this.  -->
+	<!-- I have made https://gettam.bib04.repl.co/ex/ex.html do something like the picture you sent me.  -->
+	<!-- Do you want me to work on replacing the leaderboard? I can come up with a format that displays the information. -->
+	<!-- bootstrap -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+	<script type="module" src='modules/index.js'></script>
+	<script type='module' src='modules/mid-end.js'></script>
+
+	<link rel="icon" type="image/png" href="images/tam.png">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/9.6.8/firebase-app.js"></script>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/addons/p5.sound.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="front-end.js"></script>
+	<script src="notify.js"></script>
+	<script src="gui.js"></script>
+	<script src="gesture.js"></script>
+	<script src="tile.js"></script>
+	<script src="script.js"></script>
+
+	<title>
 		Get Tam
-		</title>
-    <meta charset="utf-8" />
+	</title>
+	<meta charset="utf-8" />
 
-  </head>
-  <body>
-	  <div class='padder'>
-	  <div id='content' class="grid-container container">
-	  <div class="text-zone grid-item">
-		  <div class="page-title">
-				<div id="left-title">
-          <br>
-          <br>
-          <br>
-          <header id="page-header"> <b>GetTam</b> </header>
+</head>
+
+<body>
+	<div class='padder'>
+		<div id='content' class="grid-container container">
+			<div class="text-zone grid-item">
+				<div class="page-title">
+					<div id="left-title">
+						<br>
+						<br>
+						<br>
+						<header id="page-header"> <b>GetTam</b> </header>
+					</div>
+
+
+
+					<scores onclick="window.location='./leaderboard.html';">
+						<div class='score-title'>
+							BEST
+						</div>
+						<div></div>
+						<score id="max-score">
+							<div class="score-entry" id="max-score-holder">0</div>
+						</score>
+						<score id="max-school">
+							<div class="score-entry" id="max-school-holder">TamisCal</div>
+						</score>
+						<div class='score-title'>
+							CURRENT
+						</div>
+						<div></div>
+						<score id="score">
+							<div class="score-entry" id="score-holder">0</div>
+						</score>
+						<score id="school">
+							<div class="score-entry" id="school-holder">TamisCal</div>
+						</score>
+					</scores>
 				</div>
-
-
-        
-        <scores onclick="window.location='./leaderboard.html';">
-					<div class='score-title'>
-						BEST
-					</div>
-					<div></div>
-					<score id="max-score">
-						<div class="score-entry" id="max-score-holder">0</div>
-					</score>
-					<score id="max-school">
-						<div class="score-entry" id="max-school-holder">TamisCal</div>
-					</score>
-					<div class='score-title'>
-						CURRENT
-					</div>
-					<div></div>
-					<score id="score">
-						<div class="score-entry" id="score-holder">0</div>
-					</score>
-					<score id="school">
-						<div class="score-entry" id="school-holder">TamisCal</div>
-					</score>
-				</scores>
-	  	</div>
-  		<p id='first-intro-p'>
-        <br>
-  			Combine Marin Schools to get Tam. Press space to restart.
-        <br>
-  		</p>
-	  </div>
-      
-	  <div id="board" class='grid-item'>
-      <canvas width=600 height=400></canvas>
-    </div>
-
-    <div id="win-buttons"></div>
-    
-	  <div class='text-zone grid-item'>
-      <br>
-		  <p>
-				<b>HOW TO PLAY: </b> Use your <b>arrow keys</b> or <b>swipe</b> with your finger to move the tiles. When two tiles of the same shcool overlap, they <b>combine!</b>
-		  <br>
-      <br>
-			  <b>NOTE:</b> The order of schools is not intended to be a ranking. It is based on when the school was founded/built, with Tam being the oldest.
-		  </p>
-		  <div class='borders'>
-			  <br>
-			<!-- 			Share button -->
-			  <a class='btn btn-primary' href="https://mail.google.com/mail/u/0/?source=mailto&body=Check out GetTam: lankmann.github.io/GetTam&su=Check out GetTam!&fs=1&tf=cm"
-   				target="_blank">
-				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope" viewBox="0 0 16 16">
-  					<path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z"/>
-				</svg>
-  				Share by Email
-			</a>
-			  <button onclick='copy_link()' class='btn btn-primary'>
-				  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
-  					<path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"/>
-  					<path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"/>
-				</svg>
-				  Copy Link
-			  </button>
-			  <br>
-			  <br>
-		  </div>
-		  <div class='borders'>
-		<!-- put any subsequent sections in a div.borders-->
-			  <p></p>
-				<p>
-					Created by Linus Tornqvist, Foster Angus, and Adnan Ashraf. Inspired by GetMit. <a href="https://tamcsclub.github.io/" target="_blank">Tam CS Club</a>
-          <br>
-          <br>
-          <a href="./credits.html">See Full Credits</a>
+				<p id='first-intro-p'>
+					<br>
+					Combine Marin Schools to get Tam. Press space to restart.
+					<br>
 				</p>
-		
-		  </div>
-			<div class='borders'>
-				<table id="officer-table">
-		<!--
+			</div>
+
+			<div id="board" class='grid-item'>
+				<canvas width=600 height=400></canvas>
+			</div>
+
+			<div id="win-buttons"></div>
+
+			<div class='text-zone grid-item'>
+				<br>
+				<p>
+					<b>HOW TO PLAY: </b> Use your <b>arrow keys</b> or <b>swipe</b> with your finger to move the tiles.
+					When two tiles of the same shcool overlap, they <b>combine!</b>
+					<br>
+					<br>
+					<b>NOTE:</b> The order of schools is not intended to be a ranking. It is based on when the school
+					was founded/built, with Tam being the oldest.
+				</p>
+				<div class='borders'>
+					<br>
+					<!-- 			Share button -->
+					<a class='btn btn-primary'
+						href="https://mail.google.com/mail/u/0/?source=mailto&body=Check out GetTam: lankmann.github.io/GetTam&su=Check out GetTam!&fs=1&tf=cm"
+						target="_blank">
+						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+							class="bi bi-envelope" viewBox="0 0 16 16">
+							<path
+								d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z" />
+						</svg>
+						Share by Email
+					</a>
+					<button onclick='copy_link()' class='btn btn-primary'>
+						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+							class="bi bi-link-45deg" viewBox="0 0 16 16">
+							<path
+								d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z" />
+							<path
+								d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z" />
+						</svg>
+						Copy Link
+					</button>
+					<br>
+					<br>
+				</div>
+				<div class='borders'>
+					<!-- put any subsequent sections in a div.borders-->
+					<p></p>
+					<p>
+						Created by Linus Tornqvist, Foster Angus, and Adnan Ashraf. Inspired by GetMit. <a
+							href="https://tamcsclub.github.io/" target="_blank">Tam CS Club</a>
+						<br>
+						<br>
+						<a href="./credits.html">See Full Credits</a>
+					</p>
+
+				</div>
+				<div class='borders'>
+					<table id="officer-table">
+						<!--
 		// 2048 Tamalpais  1908
 // 1024 Branson  1917
 // 512 San Rafael  1924
@@ -134,141 +147,143 @@
 // 4 Marin Academy  1971
 // 2 TamisCal  1990
 		-->
-				<br>
-               <tr>
-                  <td class="officer-data">
-                    <img src="images/tamiscal.png" class="avatar">
-                  </td>
-                  <td class="officer-data">
-                    <h3>Tamiscal</h3>
-                       <b>Est:</b> 1990
-					<br>
-						<b>Worth:</b> 2
-                  </td>
-              </tr>
-              <tr>
-                  <td class="officer-data">
-                    <img src="images/ma.png" class="avatar">
-                  </td>
-                  <td class="officer-data">
-                    <h3>Marin Academy</h3>
-                       <b>Est:</b> 1971
-					<br>
-						<b>Worth:</b> 4
-                  </td>
-              </tr>
-				<tr>
-                  <td class="officer-data">
-                    <img src="images/sanmarin.png" class="avatar">
-                  </td>
-                  <td class="officer-data">
-                    <h3>San Marin</h3>
-                       <b>Est:</b> 1967
-					<br>
-						<b>Worth:</b> 8
-                  </td>
-              </tr>
-			<tr>
-                  <td class="officer-data">
-                    <img src="images/tl.png" class="avatar">
-                  </td>
-                  <td class="officer-data">
-                    <h3>Tera Linda</h3>
-                       <b>Est:</b> 1960
-					<br>
-						<b>Worth:</b> 16
-                  </td>
-              </tr>
-			<tr>
-                  <td class="officer-data">
-                    <img src="images/redwood.png" class="avatar">
-                  </td>
-                  <td class="officer-data">
-                    <h3>Redwood</h3>
-                       <b>Est:</b> 1958
-					<br>
-						<b>Worth:</b> 32
-                  </td>
-              </tr>
-			<tr>
-                  <td class="officer-data">
-                    <img src="images/novato.png" class="avatar">
-                  </td>
-                  <td class="officer-data">
-                    <h3>Novato</h3>
-                       <b>Est:</b> 1957
-					<br>
-						<b>Worth:</b> 64
-                  </td>
-              </tr>
-			<tr>
-                  <td class="officer-data">
-                    <img src="images/archie.jpeg" class="avatar">
-                  </td>
-                  <td class="officer-data">
-                    <h3>Archie Williams</h3>
-                       <b>Est:</b> 1951
-					<br>
-						<b>Worth:</b> 128
-                  </td>
-              </tr>
-			<tr>
-                  <td class="officer-data">
-                    <img src="images/mc.png" class="avatar">
-                  </td>
-                  <td class="officer-data">
-                    <h3>Marin Catholic</h3>
-                       <b>Est:</b> 1949
-					<br>
-						<b>Worth:</b> 256
-                  </td>
-              </tr>
-			<tr>
-                  <td class="officer-data">
-                    <img src="images/sr.jpg" class="avatar">
-                  </td>
-                  <td class="officer-data">
-                    <h3>San Rafael</h3>
-                       <b>Est:</b> 1924
-					<br>
-						<b>Worth:</b> 512
-                  </td>
-              </tr>
-		<tr>
-                  <td class="officer-data">
-                    <img src="images/branson.png" class="avatar">
-                  </td>
-                  <td class="officer-data">
-                    <h3>Branson</h3>
-                       <b>Est:</b> 1917
-					<br>
-						<b>Worth:</b> 1024
-                  </td>
-              </tr>
-			<tr>
-                  <td class="officer-data">
-                    <img src="images/tam.png" class="avatar">
-                  </td>
-                  <td class="officer-data">
-                    <h3>Tamalpais</h3>
-                       <b>Est:</b> 1908
-					<br>
-						<b>Worth:</b> 2048
-                  </td>
-              </tr>
-          </table>
+						<br>
+						<tr>
+							<td class="officer-data">
+								<img src="images/tamiscal.png" class="avatar">
+							</td>
+							<td class="officer-data">
+								<h3>Tamiscal</h3>
+								<b>Est:</b> 1990
+								<br>
+								<b>Worth:</b> 2
+							</td>
+						</tr>
+						<tr>
+							<td class="officer-data">
+								<img src="images/ma.png" class="avatar">
+							</td>
+							<td class="officer-data">
+								<h3>Marin Academy</h3>
+								<b>Est:</b> 1971
+								<br>
+								<b>Worth:</b> 4
+							</td>
+						</tr>
+						<tr>
+							<td class="officer-data">
+								<img src="images/sanmarin.png" class="avatar">
+							</td>
+							<td class="officer-data">
+								<h3>San Marin</h3>
+								<b>Est:</b> 1967
+								<br>
+								<b>Worth:</b> 8
+							</td>
+						</tr>
+						<tr>
+							<td class="officer-data">
+								<img src="images/tl.png" class="avatar">
+							</td>
+							<td class="officer-data">
+								<h3>Tera Linda</h3>
+								<b>Est:</b> 1960
+								<br>
+								<b>Worth:</b> 16
+							</td>
+						</tr>
+						<tr>
+							<td class="officer-data">
+								<img src="images/redwood.png" class="avatar">
+							</td>
+							<td class="officer-data">
+								<h3>Redwood</h3>
+								<b>Est:</b> 1958
+								<br>
+								<b>Worth:</b> 32
+							</td>
+						</tr>
+						<tr>
+							<td class="officer-data">
+								<img src="images/novato.png" class="avatar">
+							</td>
+							<td class="officer-data">
+								<h3>Novato</h3>
+								<b>Est:</b> 1957
+								<br>
+								<b>Worth:</b> 64
+							</td>
+						</tr>
+						<tr>
+							<td class="officer-data">
+								<img src="images/archie.jpeg" class="avatar">
+							</td>
+							<td class="officer-data">
+								<h3>Archie Williams</h3>
+								<b>Est:</b> 1951
+								<br>
+								<b>Worth:</b> 128
+							</td>
+						</tr>
+						<tr>
+							<td class="officer-data">
+								<img src="images/mc.png" class="avatar">
+							</td>
+							<td class="officer-data">
+								<h3>Marin Catholic</h3>
+								<b>Est:</b> 1949
+								<br>
+								<b>Worth:</b> 256
+							</td>
+						</tr>
+						<tr>
+							<td class="officer-data">
+								<img src="images/sr.jpg" class="avatar">
+							</td>
+							<td class="officer-data">
+								<h3>San Rafael</h3>
+								<b>Est:</b> 1924
+								<br>
+								<b>Worth:</b> 512
+							</td>
+						</tr>
+						<tr>
+							<td class="officer-data">
+								<img src="images/branson.png" class="avatar">
+							</td>
+							<td class="officer-data">
+								<h3>Branson</h3>
+								<b>Est:</b> 1917
+								<br>
+								<b>Worth:</b> 1024
+							</td>
+						</tr>
+						<tr>
+							<td class="officer-data">
+								<img src="images/tam.png" class="avatar">
+							</td>
+							<td class="officer-data">
+								<h3>Tamalpais</h3>
+								<b>Est:</b> 1908
+								<br>
+								<b>Worth:</b> 2048
+							</td>
+						</tr>
+					</table>
+				</div>
 			</div>
-	  </div>
-  </div>
+		</div>
 	</div>
-  <script>const checkUpdate = () => bruh</script>
-  <script>const removePopup = () => document.querySelector(":root").style.setProperty('--popDisplay', 'none');</script>
-  <div id="pop-up">
-			<h1>Message for "carson"</h1>
-		  	<p>Please provide proof of your score by emailing a screenshot of your winning board to <a href="https://mail.google.com/mail/u/0/?to=tamcsml@gmail.com&source=mailto&body=Screenshot&su=Proof of score&fs=1&tf=cm"
-   				target="_blank" onClick="removePopup()">tamcsml@gmail.com</a> </a></p>
+	<script>const checkUpdate = () => bruh</script>
+	<script>const removePopup = () => document.querySelector(":root").style.setProperty('--popDisplay', 'none');</script>
+	<div id="pop-up">
+		<h1>Message for "carson"</h1>
+		<p>Please provide proof of your score by emailing a screenshot of your winning board to <a
+				href="https://mail.google.com/mail/u/0/?to=tamcsml@gmail.com&source=mailto&body=Screenshot&su=Proof of score&fs=1&tf=cm"
+				target="_blank" onClick="removePopup()">tamcsml@gmail.com</a> </a></p>
 	</div>
-<!-- 	<div class='color-overlay'></div> -->
-              
-  </body>
+	<!-- 	<div class='color-overlay'></div> -->
+
+</body>
+
 </html>

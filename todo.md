@@ -10,6 +10,8 @@
 * Medals for daily winner
 * Brainstorm
 * List of schools for users to see the order -M
+* Streak of how many days in a row they got tam
+* Speedrun leaderboard
 
 ### Done:
 * Leaderboard data -A
