@@ -142,18 +142,32 @@ div.score-entry {
 	background: #307dcf;
 	border: 1px solid #307dcf;
 }
-.btn:hover {
+
+.btn:hover:not(.btn-danger) {
 	background: #173c63;
 	border: 1px solid #173c63;
   color: #fff;
 }
 
-.btn:focus {
+.btn:focus:not(.btn-danger) {
 	border: 1px solid #98acdd;
 	background: #98acdd;
   color: #fff
 }
 
+.btn-danger {
+	background: #dc3545;
+	border: 1px solid #dc3545
+}
+
+.btn-danger:hover {
+	background: #c82333;
+	border: 1px solid #bd2130;
+}
+
+.btn-danger:focus {
+	box-shadow: 0 0 0 0.2rem rgb(220 53 69 / 50%);
+}
 
 #win-buttons {
   padding-top: 10px;
