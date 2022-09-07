@@ -139,6 +139,9 @@ div.score-entry {
 	font-size: 20pt;
 	padding: 3px 14px 1px;
 	color: #fff;
+}
+
+.btn:not(.btn-danger) {
 	background: #307dcf;
 	border: 1px solid #307dcf;
 }
