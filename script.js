@@ -156,7 +156,7 @@ function draw() {
   cam.add(dcam);
 
   // Due to even more popular request, you now need to click Shift+Space to reset the board
-  if(keyDown[32] && keyDown[16]) setup();
+  if(keys[32] && keys[16]) setup();
 	
   if(keyUp[82] && !lost && !won) {
     board.rotate();
