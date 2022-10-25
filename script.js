@@ -34,6 +34,7 @@ let icons = [];
 let hawk, indicateBoard;
 let pastWinner = false;
 let showIndicator = true;
+let restartNum = 0;
 
 let won = false;
 let pscore = 0;
@@ -77,7 +78,7 @@ function indicate() {
   p.style('color', '#1f4ba3');
   p.style('font-weight', 'bold');
   p.id("indicate");
-  p.position(width/2, 60);
+  p.position(width / 2, 60);
   return p;
 }
 
@@ -87,7 +88,7 @@ function setup() {
   document.dispatchEvent(start);
   // document.dispatchEvent(highScore);
 
-  showIndicator = !getCookie("name");
+  showIndicator = restartNum == 0 && !getCookie("name");
   if (hasWon() || getCookie("maxSchool") == 10) {
     hasWon(true);
     hawk = hawkIcon();
@@ -156,7 +157,10 @@ function draw() {
   cam.add(dcam);
 
   // Due to even more popular request, you now need to click Shift+Space to reset the board
-  if (keys[32] && keys[16]) setup();
+  if (keys[16] && keyUp[32]) {
+    restartNum++;
+    setup();
+  }
 
   if (keyUp[82] && !lost && !won) {
     board.rotate();
