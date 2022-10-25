@@ -9,8 +9,8 @@
 
 html, body {
 	margin: 0px;
-	 justify-content: center;
-  background-color: #ffffff
+  justify-content: center;
+  background-color: #fdfdfd;
 }
 
 a {
@@ -45,8 +45,9 @@ p {
   
 	border-left: 1px solid #c0b4b4;
 	border-top: 10px solid #6c7999;
+	border-right: 5px solid #6c7999;
+	border-bottom: 5px solid #6c7999;
 	border-radius: 5px;
-	box-shadow: 5px 0px 3px #6c7999;
   display: grid;
 	font-family: 'Montserrat', sans-serif;
 	
@@ -62,6 +63,12 @@ p {
 div.borders {
 	border-top: 1px solid #c0b4b4;
 /*   margin-left: 0; */
+}
+
+div.borders.centered {
+  display: flex;
+  padding: 20px 20px 20px 0;
+  justify-content: center;
 }
 
 
@@ -122,16 +129,26 @@ div.score-entry {
     margin-right: auto;
 }
 
-.avatar {
-	border-radius: 0;
-  width: auto;
-	height: 9rem;
-  box-shadow: 8px 8px 20px rgba(0, 0, 0, .30);
+.school-card {
+  display: flex;
+  margin-bottom: 15px;
+  box-shadow: 0 3px 1px -2px rgb(0 0 0 / 10%), 
+              0 1px 1px rgb(0 0 0 / 10%), 
+              0 1px 2px rgb(0 0 0 / 10%);
+  border-radius: 10px;
+  background-color: #fff;
 }
 
-.officer-data {
+.school-card > div {
     text-align: left;
-    padding: 0px 20px 50px;
+    padding: 40px 25px 25px 40px;
+}
+.school-card > img {
+	border-radius: 0;
+  width: auto;
+	height: 11rem;
+  text-align: left;
+  padding: 25px 25px 25px 40px;
 }
 
 .btn {

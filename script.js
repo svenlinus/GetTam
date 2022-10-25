@@ -73,11 +73,11 @@ function hawkIcon() {
 }
 
 function indicate() {
-  let p = createP("Click on your score to see the new Leaderboard! -->")
+  let p = createP("Click to see the leaderboard! -->")
   p.style('color', '#1f4ba3');
   p.style('font-weight', 'bold');
   p.id("indicate");
-  p.position(200, 60);
+  p.position(width/2, 60);
   return p;
 }
 
@@ -86,83 +86,83 @@ function setup() {
   document.getElementById('win-buttons').innerHTML = '';
   document.dispatchEvent(start);
   // document.dispatchEvent(highScore);
-  
+
   showIndicator = !getCookie("name");
-  if(hasWon() || getCookie("maxSchool") == 10) {
+  if (hasWon() || getCookie("maxSchool") == 10) {
     hasWon(true);
     hawk = hawkIcon();
     pastWinner = true;
   }
-  if(showIndicator) {
+  if (showIndicator) {
     indicateBoard = indicate();
-  } 
+  }
   won = false;
   lost = false;
   continued = false;
   maxVal = 11;
-  
+
   cnv = createCanvas(616, 616);
-	// Tie canvas to a div
+  // Tie canvas to a div
   document.getElementById("board").innerHTML = "";
-	cnv.parent("board");
-  
+  cnv.parent("board");
+
   score = 0;
   bestSchool = 0;
   Screen.reset();
 
-  
+
   board = new Board(4, 4);
   movement = createVector(0, 0);
   cam = createVector(0, 0);
   dcam = createVector(0, 0);
-  restartButton = new Button("Restart", width/2, height/2, setup);
+  restartButton = new Button("Restart", width / 2, height / 2, setup);
 
   update_score(0);
   update_school(0);
   addSwipe();
-  
-  background(255); 
+
+  background(255);
 }
 
 
 function draw() {
   pscore = score;
   started = true;
-  if(pastWinner) hawk.position(windowWidth/2 + 310, 75);
-  if(showIndicator) indicateBoard.position(windowWidth/2 - 420 + sin(frameCount*0.1)*10, 65);
-  else if(indicateBoard) indicateBoard.html("");
-  
+  if (pastWinner) hawk.position(windowWidth / 2 + 310, 75);
+  if (showIndicator) indicateBoard.position(windowWidth / 2 - 260 + sin(frameCount * 0.1) * 10, 85);
+  else if (indicateBoard) indicateBoard.html("");
+
   push();
-  translate(8-cam.x, 8-cam.y);
+  translate(8 - cam.x, 8 - cam.y);
   background(225);
-  
-  if(keyDown[38] || keyDown[87]) movement.y = -1;
-  if(keyDown[40] || keyDown[83]) movement.y = 1;
-  if(keyDown[37] || keyDown[65]) movement.x = -1;
-  if(keyDown[39] || keyDown[68]) movement.x = 1;
-  
+
+  if (keyDown[38] || keyDown[87]) movement.y = -1;
+  if (keyDown[40] || keyDown[83]) movement.y = 1;
+  if (keyDown[37] || keyDown[65]) movement.x = -1;
+  if (keyDown[39] || keyDown[68]) movement.x = 1;
+
   board.display();
   pop();
-  
-  dscore = score-pscore;
-  if(dscore > 10000) {
+
+  dscore = score - pscore;
+  if (dscore > 10000) {
     document.dispatchEvent(rick);
   }
-  if(lost) lose();
+  if (lost) lose();
 
   const k = 0.1, damp = 0.1;
-  dcam.x -= (cam.x)*k + dcam.x*damp;  // spring equation
-  dcam.y -= (cam.y)*k + dcam.y*damp;
+  dcam.x -= (cam.x) * k + dcam.x * damp;  // spring equation
+  dcam.y -= (cam.y) * k + dcam.y * damp;
   cam.add(dcam);
 
   // Due to even more popular request, you now need to click Shift+Space to reset the board
-  if(keys[32] && keys[16]) setup();
-	
-  if(keyUp[82] && !lost && !won) {
+  if (keys[32] && keys[16]) setup();
+
+  if (keyUp[82] && !lost && !won) {
     board.rotate();
     movement.set(0, 0);
   }
-  
+
   keyDown = [];
   keyUp = [];
   mouseIsUp = false;
@@ -204,7 +204,7 @@ function clearCookies() {
 
 
 const keepGoing = () => {
-  maxVal ++;
+  maxVal++;
   won = false;
   winCoords.tile.i = winCoords.i;
   winCoords.tile.j = winCoords.j;
@@ -212,7 +212,7 @@ const keepGoing = () => {
 }
 
 function goToCredits() {
-  location.href="./credits.html";
+  location.href = "./credits.html";
 }
 
 function win() {
@@ -228,7 +228,7 @@ function lose() {
 }
 
 function parr(arr) {  // print array
-  for(let e of arr)
+  for (let e of arr)
     print(e);
 }
 
