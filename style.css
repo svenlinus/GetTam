@@ -123,6 +123,17 @@ div.score-entry {
 	display: inline-block;
 }
 
+#left-title > .header {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+#left-title > .header > img {
+  transform: translateY(10px);
+  height: 64px;
+}
+
 #officer-table {
     width: 80%;
     margin-left: auto;
