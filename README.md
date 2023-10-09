@@ -2,6 +2,9 @@
 
 Play: https://lankmann.github.io/GetTam/
 
+Analytics: https://cadenmarinozzi.me/GetTam-Analytics/
+(Created by nekumelon)
+
 
 ## Style Guide
 * Spaces before and after all math operations
