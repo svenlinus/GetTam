@@ -1,6 +1,6 @@
 # GetTam!
 
-Play: https://lankmann.github.io/GetTam/
+Play: https://svenlinus.github.io/GetTam/
 
 Analytics: https://cadenmarinozzi.me/GetTam-Analytics/
 (Created by nekumelon)
