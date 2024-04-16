@@ -167,7 +167,7 @@ export async function addBlacklist(name) {
   list.push(name);
   set(ref(database, 'blacklist'), list);
 
-  window.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
+  window.location.href = "https://www.youtube.com/watch?v=xvFZjo5PgG0";
   
 }
 
