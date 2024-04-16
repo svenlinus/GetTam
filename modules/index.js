@@ -40,7 +40,7 @@ export async function newGame() {
   var list = pathlist.val();
   for(var i = 0; i < list.length; i++) {
     if(list[i] === id) {
-      window.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
+      window.location.href = "https://www.youtube.com/watch?v=xvFZjo5PgG0";
       
       return;
     }
