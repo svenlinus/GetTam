@@ -43,22 +43,43 @@ let started = false;
 let bruh = false;
 
 
+
 function preload() {
-  icons = [
-    loadImage("images/tamiscal.png"),
-    loadImage("images/ma.png"),
-    loadImage("images/sanmarin.png"),
-    loadImage("images/tl.png"),
-    loadImage("images/redwood.png"),
-    loadImage("images/novato.png"),
-    loadImage("images/archie.jpeg"),
-    loadImage("images/mc.png"),
-    loadImage("images/sr.jpg"),
-    loadImage("images/branson.png"),
-    loadImage("images/tam.png"),
-    loadImage("images/last.png"),
-    loadImage("images/outside.png")
-  ];
+  const urlObj = new URL(window.location.href);
+  const queryParams = new URLSearchParams(urlObj.search);
+  const jul = queryParams.get('jul');
+
+  icons = jul == 'yes'
+    ? [
+      'num',                          // 2
+      'num',                          // 4
+      'num',                          // 8
+      'num',                          // 16
+      loadImage('images/linus.jpg'),  // 32
+      loadImage('images/ida.jpg'),    // 64
+      loadImage('images/emelie.jpg'), // 128
+      loadImage('images/two.jpg'),    // 256
+      loadImage('images/three.jpg'),  // 512
+      loadImage('images/four.jpg'),   // 1024
+      loadImage('images/jul.jpg'),    // 2048
+      loadImage('images/five.jpg'),   // 4096
+      loadImage("images/outside.png")
+    ]
+    : [
+      loadImage("images/tamiscal.png"),
+      loadImage("images/ma.png"),
+      loadImage("images/sanmarin.png"),
+      loadImage("images/tl.png"),
+      loadImage("images/redwood.png"),
+      loadImage("images/novato.png"),
+      loadImage("images/archie.jpeg"),
+      loadImage("images/mc.png"),
+      loadImage("images/sr.jpg"),
+      loadImage("images/branson.png"),
+      loadImage("images/tam.png"),
+      loadImage("images/last.png"),
+      loadImage("images/outside.png")
+    ];
 
   hawkSound = loadSound("sounds/hawk.mp3");
 }

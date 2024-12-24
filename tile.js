@@ -307,18 +307,18 @@ class Tile {
     const val = this.displayVal;
     imageMode(CENTER);
     
-    if(!numbers && icons[this.displayVal-1]) {
+    if(!numbers && icons[this.displayVal-1] && icons[this.displayVal-1] !== 'num') {
       image(icons[this.displayVal-1], 0, 0, size-16, size-16);
       return;
     }
     colorMode(HSB);
-    fill(22-val*2, val*9, 90);
+    fill(240-val*2, (val - 0.5)*18, 90);
     if(val == 11) fill(340, 100, 90);
     noStroke();
     rect(0, 0, 134, 134);
     colorMode(RGB);
     fill(0);
-    if(val >= 3) fill(255);
+    if(val >= 0) fill(255);
     text(pow(2, val), 0, 0);
   }
 
