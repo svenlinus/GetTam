@@ -49,6 +49,24 @@ function preload() {
   const queryParams = new URLSearchParams(urlObj.search);
   const jul = queryParams.get('jul');
 
+  if (jul == 'yes') {
+    document.getElementById('page-header').innerHTML = '<b>GetJul</b>';
+    document.getElementById('header-img').src = 'images/tree.webp';
+    school_list = [
+      'Two',
+      'Four',
+      'Eight',
+      'Sixteen',
+      'Linus',
+      'Ida',
+      'Emelie',
+      'Mapa',
+      'Selfie',
+      'Groupie',
+      'Jul',
+    ];
+  }
+
   icons = jul == 'yes'
     ? [
       'num',                          // 2
@@ -81,7 +99,9 @@ function preload() {
       loadImage("images/outside.png")
     ];
 
-  hawkSound = loadSound("sounds/hawk.mp3");
+  hawkSound = jul == 'yes'
+    ? loadSound("sounds/hohoho.mp3")
+    : loadSound("sounds/hawk.mp3");
 }
 
 function hawkIcon() {
